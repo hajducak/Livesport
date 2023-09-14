@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78932AB3450B00F4B26A /* LivesportApp.swift */; };
+		52FE78962AB3450B00F4B26A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78952AB3450B00F4B26A /* ContentView.swift */; };
+		52FE78982AB3450C00F4B26A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78972AB3450C00F4B26A /* Assets.xcassets */; };
+		52FE789B2AB3450C00F4B26A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */; };
+		52FE78A52AB3450D00F4B26A /* LivesportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78A42AB3450D00F4B26A /* LivesportTests.swift */; };
+		52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */; };
+		52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52FE78A12AB3450D00F4B26A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52FE78882AB3450B00F4B26A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52FE788F2AB3450B00F4B26A;
+			remoteInfo = Livesport;
+		};
+		52FE78AB2AB3450D00F4B26A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52FE78882AB3450B00F4B26A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52FE788F2AB3450B00F4B26A;
+			remoteInfo = Livesport;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52FE78902AB3450B00F4B26A /* Livesport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livesport.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FE78932AB3450B00F4B26A /* LivesportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportApp.swift; sourceTree = "<group>"; };
+		52FE78952AB3450B00F4B26A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		52FE78972AB3450C00F4B26A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		52FE78A02AB3450D00F4B26A /* LivesportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FE78A42AB3450D00F4B26A /* LivesportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportTests.swift; sourceTree = "<group>"; };
+		52FE78AA2AB3450D00F4B26A /* LivesportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITests.swift; sourceTree = "<group>"; };
+		52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52FE788D2AB3450B00F4B26A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE789D2AB3450D00F4B26A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE78A72AB3450D00F4B26A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52FE78872AB3450B00F4B26A = {
+			isa = PBXGroup;
+			children = (
+				52FE78922AB3450B00F4B26A /* Livesport */,
+				52FE78A32AB3450D00F4B26A /* LivesportTests */,
+				52FE78AD2AB3450D00F4B26A /* LivesportUITests */,
+				52FE78912AB3450B00F4B26A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52FE78912AB3450B00F4B26A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78902AB3450B00F4B26A /* Livesport.app */,
+				52FE78A02AB3450D00F4B26A /* LivesportTests.xctest */,
+				52FE78AA2AB3450D00F4B26A /* LivesportUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52FE78922AB3450B00F4B26A /* Livesport */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78932AB3450B00F4B26A /* LivesportApp.swift */,
+				52FE78952AB3450B00F4B26A /* ContentView.swift */,
+				52FE78972AB3450C00F4B26A /* Assets.xcassets */,
+				52FE78992AB3450C00F4B26A /* Preview Content */,
+			);
+			path = Livesport;
+			sourceTree = "<group>";
+		};
+		52FE78992AB3450C00F4B26A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52FE78A32AB3450D00F4B26A /* LivesportTests */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78A42AB3450D00F4B26A /* LivesportTests.swift */,
+			);
+			path = LivesportTests;
+			sourceTree = "<group>";
+		};
+		52FE78AD2AB3450D00F4B26A /* LivesportUITests */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */,
+				52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */,
+			);
+			path = LivesportUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52FE788F2AB3450B00F4B26A /* Livesport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52FE78B42AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "Livesport" */;
+			buildPhases = (
+				52FE788C2AB3450B00F4B26A /* Sources */,
+				52FE788D2AB3450B00F4B26A /* Frameworks */,
+				52FE788E2AB3450B00F4B26A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Livesport;
+			productName = Livesport;
+			productReference = 52FE78902AB3450B00F4B26A /* Livesport.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52FE789F2AB3450D00F4B26A /* LivesportTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52FE78B72AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "LivesportTests" */;
+			buildPhases = (
+				52FE789C2AB3450D00F4B26A /* Sources */,
+				52FE789D2AB3450D00F4B26A /* Frameworks */,
+				52FE789E2AB3450D00F4B26A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52FE78A22AB3450D00F4B26A /* PBXTargetDependency */,
+			);
+			name = LivesportTests;
+			productName = LivesportTests;
+			productReference = 52FE78A02AB3450D00F4B26A /* LivesportTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52FE78A92AB3450D00F4B26A /* LivesportUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52FE78BA2AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "LivesportUITests" */;
+			buildPhases = (
+				52FE78A62AB3450D00F4B26A /* Sources */,
+				52FE78A72AB3450D00F4B26A /* Frameworks */,
+				52FE78A82AB3450D00F4B26A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52FE78AC2AB3450D00F4B26A /* PBXTargetDependency */,
+			);
+			name = LivesportUITests;
+			productName = LivesportUITests;
+			productReference = 52FE78AA2AB3450D00F4B26A /* LivesportUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52FE78882AB3450B00F4B26A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					52FE788F2AB3450B00F4B26A = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					52FE789F2AB3450D00F4B26A = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 52FE788F2AB3450B00F4B26A;
+					};
+					52FE78A92AB3450D00F4B26A = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 52FE788F2AB3450B00F4B26A;
+					};
+				};
+			};
+			buildConfigurationList = 52FE788B2AB3450B00F4B26A /* Build configuration list for PBXProject "Livesport" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52FE78872AB3450B00F4B26A;
+			productRefGroup = 52FE78912AB3450B00F4B26A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52FE788F2AB3450B00F4B26A /* Livesport */,
+				52FE789F2AB3450D00F4B26A /* LivesportTests */,
+				52FE78A92AB3450D00F4B26A /* LivesportUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52FE788E2AB3450B00F4B26A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52FE789B2AB3450C00F4B26A /* Preview Assets.xcassets in Resources */,
+				52FE78982AB3450C00F4B26A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE789E2AB3450D00F4B26A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE78A82AB3450D00F4B26A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52FE788C2AB3450B00F4B26A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52FE78962AB3450B00F4B26A /* ContentView.swift in Sources */,
+				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE789C2AB3450D00F4B26A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52FE78A52AB3450D00F4B26A /* LivesportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52FE78A62AB3450D00F4B26A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */,
+				52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52FE78A22AB3450D00F4B26A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52FE788F2AB3450B00F4B26A /* Livesport */;
+			targetProxy = 52FE78A12AB3450D00F4B26A /* PBXContainerItemProxy */;
+		};
+		52FE78AC2AB3450D00F4B26A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52FE788F2AB3450B00F4B26A /* Livesport */;
+			targetProxy = 52FE78AB2AB3450D00F4B26A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		52FE78B22AB3450D00F4B26A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		52FE78B32AB3450D00F4B26A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52FE78B52AB3450D00F4B26A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Livesport/Preview Content\"";
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.Livesport;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52FE78B62AB3450D00F4B26A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Livesport/Preview Content\"";
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.Livesport;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		52FE78B82AB3450D00F4B26A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.LivesportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livesport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Livesport";
+			};
+			name = Debug;
+		};
+		52FE78B92AB3450D00F4B26A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.LivesportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livesport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Livesport";
+			};
+			name = Release;
+		};
+		52FE78BB2AB3450D00F4B26A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.LivesportUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Livesport;
+			};
+			name = Debug;
+		};
+		52FE78BC2AB3450D00F4B26A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FMH4876MKB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarekHajducak.LivesportUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Livesport;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52FE788B2AB3450B00F4B26A /* Build configuration list for PBXProject "Livesport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52FE78B22AB3450D00F4B26A /* Debug */,
+				52FE78B32AB3450D00F4B26A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52FE78B42AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "Livesport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52FE78B52AB3450D00F4B26A /* Debug */,
+				52FE78B62AB3450D00F4B26A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52FE78B72AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "LivesportTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52FE78B82AB3450D00F4B26A /* Debug */,
+				52FE78B92AB3450D00F4B26A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52FE78BA2AB3450D00F4B26A /* Build configuration list for PBXNativeTarget "LivesportUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52FE78BB2AB3450D00F4B26A /* Debug */,
+				52FE78BC2AB3450D00F4B26A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52FE78882AB3450B00F4B26A /* Project object */;
+}
