@@ -14,6 +14,8 @@
 		52FE78A52AB3450D00F4B26A /* LivesportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78A42AB3450D00F4B26A /* LivesportTests.swift */; };
 		52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */; };
 		52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */; };
+		52FE78BE2AB3499900F4B26A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78BD2AB3499900F4B26A /* README.md */; };
+		52FE78C12AB34E2600F4B26A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 52FE78C02AB34E2600F4B26A /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		52FE78AA2AB3450D00F4B26A /* LivesportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITests.swift; sourceTree = "<group>"; };
 		52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		52FE78BD2AB3499900F4B26A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FE78C12AB34E2600F4B26A /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +98,7 @@
 		52FE78922AB3450B00F4B26A /* Livesport */ = {
 			isa = PBXGroup;
 			children = (
+				52FE78BD2AB3499900F4B26A /* README.md */,
 				52FE78932AB3450B00F4B26A /* LivesportApp.swift */,
 				52FE78952AB3450B00F4B26A /* ContentView.swift */,
 				52FE78972AB3450C00F4B26A /* Assets.xcassets */,
@@ -143,6 +148,9 @@
 			dependencies = (
 			);
 			name = Livesport;
+			packageProductDependencies = (
+				52FE78C02AB34E2600F4B26A /* ComposableArchitecture */,
+			);
 			productName = Livesport;
 			productReference = 52FE78902AB3450B00F4B26A /* Livesport.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 52FE78872AB3450B00F4B26A;
+			packageReferences = (
+				52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 52FE78912AB3450B00F4B26A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FE78BE2AB3499900F4B26A /* README.md in Resources */,
 				52FE789B2AB3450C00F4B26A /* Preview Assets.xcassets in Resources */,
 				52FE78982AB3450C00F4B26A /* Assets.xcassets in Resources */,
 			);
@@ -585,6 +597,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52FE78C02AB34E2600F4B26A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52FE78882AB3450B00F4B26A /* Project object */;
 }
