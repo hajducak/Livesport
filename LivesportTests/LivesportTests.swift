@@ -2,7 +2,7 @@
 //  LivesportTests.swift
 //  LivesportTests
 //
-//  Created by MacBook Pro on 14/09/2023.
+//  Created by Marek Hajdučák on 14/09/2023.
 //
 
 import XCTest
