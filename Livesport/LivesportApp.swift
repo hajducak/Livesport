@@ -10,14 +10,14 @@ import ComposableArchitecture
 
 @main
 struct LivesportApp: App {
-    static let store = Store(initialState: CounterFeature.State()) {
-        CounterFeature()
+    static let store = Store(initialState: ResultsFeature.State()) {
+        ResultsFeature()
             ._printChanges()
     }
 
     var body: some Scene {
         WindowGroup {
-            CounterView(
+            ResultsView(
                 store: LivesportApp.store
             )
         }

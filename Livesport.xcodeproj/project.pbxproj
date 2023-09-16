@@ -26,6 +26,10 @@
 		52FE78D42AB4912D00F4B26A /* ContactsFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */; };
 		52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D52AB4965B00F4B26A /* ContactDetailFeature.swift */; };
 		52FE78D82AB496DC00F4B26A /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */; };
+		52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */; };
+		52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */; };
+		52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */; };
+		52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E02AB59BBF00F4B26A /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeatureTests.swift; sourceTree = "<group>"; };
 		52FE78D52AB4965B00F4B26A /* ContactDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailFeature.swift; sourceTree = "<group>"; };
 		52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
+		52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeature.swift; sourceTree = "<group>"; };
+		52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
+		52FE78E02AB59BBF00F4B26A /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +129,7 @@
 			children = (
 				52FE78BD2AB3499900F4B26A /* README.md */,
 				52FE78932AB3450B00F4B26A /* LivesportApp.swift */,
+				52FE78D92AB4A57A00F4B26A /* Results */,
 				52FE78CA2AB378ED00F4B26A /* Contact */,
 				52FE78C42AB3575200F4B26A /* Caunter */,
 				52FE78972AB3450C00F4B26A /* Assets.xcassets */,
@@ -178,6 +187,17 @@
 				52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */,
 			);
 			path = Contact;
+			sourceTree = "<group>";
+		};
+		52FE78D92AB4A57A00F4B26A /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */,
+				52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */,
+				52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */,
+				52FE78E02AB59BBF00F4B26A /* SearchResult.swift */,
+			);
+			path = Results;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,12 +338,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FE78C32AB3526400F4B26A /* CounterFeature.swift in Sources */,
+				52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */,
+				52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */,
 				52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */,
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
 				52FE78CE2AB3797700F4B26A /* ContactsView.swift in Sources */,
 				52FE78D82AB496DC00F4B26A /* ContactDetailView.swift in Sources */,
 				52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */,
+				52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */,
 				52FE78C92AB3756100F4B26A /* NumberFactClient.swift in Sources */,
+				52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */,
 				52FE78CC2AB3790900F4B26A /* ContactsFeature.swift in Sources */,
 				52FE78D02AB37A1A00F4B26A /* AddContactFeature.swift in Sources */,
 				52FE78D22AB37A6F00F4B26A /* AddContactView.swift in Sources */,
