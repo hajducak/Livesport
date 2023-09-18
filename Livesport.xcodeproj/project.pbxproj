@@ -33,6 +33,8 @@
 		52FE78E72AB8813700F4B26A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E62AB8813700F4B26A /* LoadingView.swift */; };
 		52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E82AB8816700F4B26A /* EmptyView.swift */; };
 		52FE78EB2AB8900A00F4B26A /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EA2AB8900A00F4B26A /* ImageClient.swift */; };
+		52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */; };
+		52FE78EF2AB8A32300F4B26A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		52FE78E62AB8813700F4B26A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		52FE78E82AB8816700F4B26A /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		52FE78EA2AB8900A00F4B26A /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
+		52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportGroupedList.swift; sourceTree = "<group>"; };
+		52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,8 @@
 			children = (
 				52FE78E62AB8813700F4B26A /* LoadingView.swift */,
 				52FE78E82AB8816700F4B26A /* EmptyView.swift */,
+				52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */,
+				52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				52FE78C32AB3526400F4B26A /* CounterFeature.swift in Sources */,
 				52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */,
 				52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */,
+				52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */,
 				52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */,
 				52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */,
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
@@ -370,6 +377,7 @@
 				52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */,
 				52FE78CC2AB3790900F4B26A /* ContactsFeature.swift in Sources */,
 				52FE78D02AB37A1A00F4B26A /* AddContactFeature.swift in Sources */,
+				52FE78EF2AB8A32300F4B26A /* RoundedCorner.swift in Sources */,
 				52FE78D22AB37A6F00F4B26A /* AddContactView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

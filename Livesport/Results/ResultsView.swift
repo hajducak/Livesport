@@ -16,28 +16,31 @@ struct ResultsView: View {
             NavigationView {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading, spacing: 6) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.title3)
-                                .padding(.leading, 8)
-                                .foregroundColor(Color(.systemGray))
-                            TextField(
-                                "Vyhľadaj výsledky",
-                                text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
-                            )
+                        HStack(alignment: .center, spacing: 4) {
+                            HStack(alignment: .center, spacing: 8) {
+                                Image(systemName: "magnifyingglass")
+                                    .font(.title3)
+                                    .padding(.leading, 8)
+                                    .foregroundColor(Color(.systemGray))
+                                TextField(
+                                    "Vyhľadaj výsledky",
+                                    text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
+                                )
+                            }
+                                .frame(height: 48)
+                                .background(Color(.systemGray4).cornerRadius(8, corners: [.bottomLeft, .topLeft]))
+                            
                             Button {
                                 viewStore.send(.searchButtonTapped)
                             } label: {
                                 Text("Search")
                                     .foregroundColor(.white)
-                                    .padding(6)
                             }
-                                .background(Color(UIColor.systemBlue)
-                                    .cornerRadius(8))
-                                .padding(4)
-                                
+                                .frame(height: 48)
+                                .padding(.horizontal, 8)
+                                .background(Color(UIColor.systemBlue).cornerRadius(8, corners: [.bottomRight, .topRight]))
                         }
-                            .background(Color(.systemGray3).cornerRadius(8))
+                            
                         if let isValid = viewStore.isSearchValid, !isValid {
                             Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
                                 .font(Font.caption).bold()
@@ -47,7 +50,7 @@ struct ResultsView: View {
                         }
                     }
                         .background(
-                            Color.red.cornerRadius(8)
+                            Color.red.opacity((viewStore.isSearchValid ?? true) ? 0 : 1).cornerRadius(8)
                         ).overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
@@ -59,12 +62,7 @@ struct ResultsView: View {
                         if viewStore.isLoading {
                             LoadingView()
                         } else {
-                            List(viewStore.result) { item in
-                                Text(item.name)
-                            }
-                                .emptyPlaceholder(viewStore.result) {
-                                    EmptySearchView(state: viewStore.emptyState)
-                                }
+                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState)
                         }
                     }
                     Spacer()

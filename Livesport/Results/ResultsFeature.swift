@@ -6,14 +6,39 @@
 //
 // NOTES:
 // 1. How to use BindableAction and BindingReducer? - case binding(BindingAction<String>)
+// 2. How to use two asynch task inside effects (.run)
+//
 
 import ComposableArchitecture
+
+struct SearchResultViewModel: Equatable, Identifiable, Hashable {
+    let id: String
+    let name: String
+    let sport: String
+    // TODO: add image
+
+    init(result: SearchResult) {
+        self.id = result.id
+        self.name = result.name
+        self.sport = result.sport.name
+    }
+
+    init(
+        id: String,
+        name: String,
+        sport: String
+    ) {
+        self.id = id
+        self.name = name
+        self.sport = sport
+    }
+}
 
 struct ResultsFeature: Reducer {
     struct State: Equatable {
         @BindingState var search = ""
         @BindingState var emptyState: EmptyState = .empty
-        var result: [SearchResult] = []
+        var searchedData: [SearchResultViewModel] = []
         var isLoading: Bool = false
         var isSearchValid: Bool?
         @PresentationState var alert: AlertState<Action.Alert>?
@@ -42,24 +67,24 @@ struct ResultsFeature: Reducer {
                     return .none
                 }
                 state.isSearchValid = true
-                state.result = []
+                state.searchedData = []
                 state.isLoading = true
                 return .run { [search = state.search] send in
                     await send(.searchResponse(
                         TaskResult { try await self.searchDownloader.fetch(search) }
                     ))
                 }
-            case let .searchResponse(.success(result)):
-                if result.isEmpty {
+            case let .searchResponse(.success(results)):
+                if results.isEmpty {
                     state.emptyState = .emptySearch
                 }
-                state.result = result
+                state.searchedData = results.compactMap({ SearchResultViewModel(result: $0) })
                 state.isLoading = false
                 return .none
             case .alert:
                 return .none
             case let .searchResponse(.failure(error)):
-                state.result = []
+                state.searchedData = []
                 state.emptyState = .errorSearch(error.localizedDescription)
                 state.isLoading = false
                 state.alert = AlertState {
