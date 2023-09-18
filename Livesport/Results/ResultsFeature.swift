@@ -23,11 +23,7 @@ struct SearchResultViewModel: Equatable, Identifiable, Hashable {
         self.sport = result.sport.name
     }
 
-    init(
-        id: String,
-        name: String,
-        sport: String
-    ) {
+    init(id: String, name: String, sport: String) {
         self.id = id
         self.name = name
         self.sport = sport
@@ -38,17 +34,36 @@ struct ResultsFeature: Reducer {
     struct State: Equatable {
         @BindingState var search = ""
         @BindingState var emptyState: EmptyState = .empty
+        var selectedSportFilter: String = "1,2,3,4,5,6,7,8,9"
+        var sportFilters: [FilterModel] = [
+            FilterModel(id: "1,2,3,4,5,6,7,8,9", imageName: "tray.full.fill", title: "All", isSelected: true),
+            FilterModel(id: "1", imageName: nil, title: "Soccer"),
+            FilterModel(id: "2", imageName: nil, title: "Tenis"),
+            FilterModel(id: "3", imageName: nil, title: "Basketballl"),
+            FilterModel(id: "4", imageName: nil, title: "Hockey"),
+            FilterModel(id: "5", imageName: nil, title: "American Football"),
+            FilterModel(id: "6", imageName: nil, title: "Baseball"),
+            FilterModel(id: "7", imageName: nil, title: "Handball"),
+            FilterModel(id: "8", imageName: nil, title: "Rugby"),
+            FilterModel(id: "9", imageName: nil, title: "Floorball")
+        ]
+        var selectedTypeFilter: String = "1,2,3,4"
+        var typeFilters: [FilterModel] = [
+            FilterModel(id: "1,2,3,4", imageName: "tray.full.fill", title: "All", isSelected: true),
+            FilterModel(id: "1", imageName: "person.3.fill", title: "Competitions"),
+            FilterModel(id: "2,3,4", imageName: "person.fill", title: "Participants")
+        ]
         var searchedData: [SearchResultViewModel] = []
         var isLoading: Bool = false
         var isSearchValid: Bool?
         @PresentationState var alert: AlertState<Action.Alert>?
     }
-    
-    
+
     enum Action: Equatable {
         case searchResponse(TaskResult<[SearchResult]>)
+        case typeFilterTagSelected(String)
+        case sportFilterTagSelected(String)
         case searchButtonTapped
-        case filterButtonTapped
         case textChange(String)
         case alert(PresentationAction<Alert>)
         enum Alert: Equatable {
@@ -69,9 +84,9 @@ struct ResultsFeature: Reducer {
                 state.isSearchValid = true
                 state.searchedData = []
                 state.isLoading = true
-                return .run { [search = state.search] send in
+                return .run { [search = state.search, typeIds = state.selectedTypeFilter, sportIds = state.selectedSportFilter] send in
                     await send(.searchResponse(
-                        TaskResult { try await self.searchDownloader.fetch(search) }
+                        TaskResult { try await self.searchDownloader.fetch(search, typeIds, sportIds) }
                     ))
                 }
             case let .searchResponse(.success(results)):
@@ -98,7 +113,15 @@ struct ResultsFeature: Reducer {
             case let .textChange(searchText):
                 state.search = searchText
                 return .none
-            case .filterButtonTapped:
+            case let .typeFilterTagSelected(id):
+                state.selectedTypeFilter = id
+                state.typeFilters.forEach { $0.isSelected = false }
+                state.typeFilters.first { $0.id == id }?.isSelected = true
+                return .none
+            case let .sportFilterTagSelected(id):
+                state.selectedSportFilter = id
+                state.sportFilters.forEach { $0.isSelected = false }
+                state.sportFilters.first { $0.id == id }?.isSelected = true
                 return .none
             }
         }.ifLet(\.$alert, action: /Action.alert)

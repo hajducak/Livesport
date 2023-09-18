@@ -35,6 +35,7 @@
 		52FE78EB2AB8900A00F4B26A /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EA2AB8900A00F4B26A /* ImageClient.swift */; };
 		52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */; };
 		52FE78EF2AB8A32300F4B26A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */; };
+		52FE78F42AB8A66700F4B26A /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78F32AB8A66700F4B26A /* FilterTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		52FE78EA2AB8900A00F4B26A /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 		52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportGroupedList.swift; sourceTree = "<group>"; };
 		52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		52FE78F32AB8A66700F4B26A /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,9 +207,8 @@
 				52FE78E52AB8811F00F4B26A /* Views */,
 				52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */,
 				52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */,
-				52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */,
-				52FE78EA2AB8900A00F4B26A /* ImageClient.swift */,
-				52FE78E02AB59BBF00F4B26A /* SearchResult.swift */,
+				52FE78F32AB8A66700F4B26A /* FilterTag.swift */,
+				52FE78F02AB8A5C400F4B26A /* Networking */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -221,6 +222,16 @@
 				52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52FE78F02AB8A5C400F4B26A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				52FE78E02AB59BBF00F4B26A /* SearchResult.swift */,
+				52FE78EA2AB8900A00F4B26A /* ImageClient.swift */,
+				52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +376,7 @@
 				52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */,
 				52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */,
 				52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */,
+				52FE78F42AB8A66700F4B26A /* FilterTag.swift in Sources */,
 				52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */,
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
 				52FE78CE2AB3797700F4B26A /* ContactsView.swift in Sources */,

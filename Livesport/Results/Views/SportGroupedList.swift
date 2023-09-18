@@ -2,7 +2,7 @@
 //  SportGroupedList.swift
 //  Livesport
 //
-//   Created by Marek Hajdučák on 18/09/2023.
+//  Created by Marek Hajdučák on 18/09/2023.
 //
 
 import SwiftUI

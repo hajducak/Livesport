@@ -9,14 +9,14 @@ import Foundation
 import ComposableArchitecture
 
 struct SearchClient {
-    var fetch: (String) async throws -> [SearchResult]
+    var fetch: (_ searchQuery: String, _ typeIds: String, _ sportIds: String) async throws -> [SearchResult]
 }
 
 extension SearchClient: DependencyKey {
     static let liveValue = Self(
-        fetch: { search in
+        fetch: { search, typeIds, sportIds in
             let urlMaker = URLMaker()
-            guard let url = urlMaker.endpoint(search: search) else { return [] }
+            guard let url = urlMaker.endpoint(search: search, typeIds: typeIds, sportIds: sportIds) else { return [] }
             let (data, _) = try await URLSession.shared.data(from: url)
             let result = try JSONDecoder().decode([SearchResult].self, from: data)
             return result
@@ -34,15 +34,14 @@ extension DependencyValues {
 final class URLMaker {
     private let baseURL: String = "https://s.livesport.services/api/v2/search"
 
-    // Add sport-ids (sport) and type-ids (type of sport) filter
-    func endpoint(search: String) -> URL? {
+    func endpoint(search: String, typeIds: String, sportIds: String) -> URL? {
         let params: [String: String] = [
             "lang-id": "1",
             "project-id": "602",
             "project-type-id": "1",
-            "sport-ids" : "1,2,3,4,5,6,7,8,9",
-            "type-ids": "2,3",
-            "q": "\(search)"
+            "sport-ids" : sportIds,
+            "type-ids": typeIds,
+            "q": search
         ]
         let paramString: String = params.compactMap {(key, value) -> String in
             return "\(key)=\(value)"
