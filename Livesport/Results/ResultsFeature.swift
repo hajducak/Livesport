@@ -12,6 +12,8 @@ struct ResultsFeature: Reducer {
         @BindingState var search = ""
         var result: [SearchResult] = []
         var isLoading: Bool = false
+        var isSearchValid: Bool?
+        // TODO: error handling - api error: add empty view and error view
     }
 
     enum Action: Equatable {
@@ -28,6 +30,11 @@ struct ResultsFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .searchButtonTapped:
+                guard state.search.count >= 2 else {
+                    state.isSearchValid = false
+                    return .none
+                }
+                state.isSearchValid = true
                 state.result = []
                 state.isLoading = true
                 return .run { [search = state.search] send in

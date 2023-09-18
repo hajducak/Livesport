@@ -15,22 +15,47 @@ struct ResultsView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
                 VStack(alignment: .leading) {
-                    HStack {
-                        TextField(
-                            "Vyhľadaj výsledky",
-                            text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
-                        )
-                            .padding()
-                        Button {
-                            viewStore.send(.searchButtonTapped)
-                        } label: {
-                            Image(systemName: "magnifyingglass.circle.fill")
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "magnifyingglass")
+                                .font(.title3)
+                                .padding(.leading, 8)
+                                .foregroundColor(Color(UIColor.systemGray))
+                            TextField(
+                                "Vyhľadaj výsledky",
+                                text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
+                            )
+                            Button {
+                                viewStore.send(.searchButtonTapped)
+                            } label: {
+                                Text("Vyhľadaj")
+                                    .foregroundColor(.white)
+                                    .padding(6)
+                            }
+                                .background(Color(UIColor.systemBlue)
+                                    .cornerRadius(8))
+                                .padding(4)
+                                
                         }
-                            .font(.largeTitle)
-                            .padding(.horizontal, 8)
+                            //.padding(.vertical, 8)
+                            .background(Color(.systemGray3).cornerRadius(8))
+                        if let isValid = viewStore.isSearchValid, !isValid {
+                            Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
+                                .font(Font.caption).bold()
+                                .foregroundColor(.white)
+                                .padding(.bottom, 6)
+                                .padding(.horizontal, 8)
+                        }
                     }
-                        .background(Color.gray.opacity(0.3).cornerRadius(8))
-                        .padding()
+                        .background(
+                            Color.red.cornerRadius(8)
+                        ).overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
+                        )
+                            .animation(.default, value: viewStore.isSearchValid)
+                            .padding(.horizontal)
+
                     VStack(alignment: .leading) {
                         if viewStore.isLoading {
                             LoadingView()
@@ -85,5 +110,15 @@ struct ResultsView_Previews: PreviewProvider {
                 ResultsFeature()
             }
         )
+    }
+}
+
+struct ValidationModifier: ViewModifier {
+    @Binding var isValid: Bool
+    var text: String?
+
+    func body(content: Content) -> some View {
+        
+            // .animation(.default)
     }
 }
