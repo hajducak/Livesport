@@ -80,6 +80,12 @@ struct ResultsView: View {
                     }
             }
         }
+            .alert(
+                store: self.store.scope(
+                    state: \.$alert,
+                    action: { .alert($0) }
+                )
+            )
     }
 }
 

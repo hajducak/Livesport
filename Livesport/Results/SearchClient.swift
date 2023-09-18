@@ -8,6 +8,14 @@
 import Foundation
 import ComposableArchitecture
 
+enum NetworkError: Error {
+    case transportError(Error)
+    case urlError
+    case noData
+    case serverError(statusCode: Int)
+    case decodingError(Error)
+}
+
 struct SearchClient {
     var fetch: (String) async throws -> [SearchResult]
 }
@@ -16,18 +24,8 @@ extension SearchClient: DependencyKey {
     static let liveValue = Self(
         fetch: { search in
             let urlMaker = URLMaker()
-            guard let url = urlMaker.endpoint(search: search) else {
-                //TODO: error
-                return []
-            }
-            let (data, response) = try await URLSession.shared.data(from: url)
-            
-        
-            if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
-               print(JSONString)
-            }
-
-            
+            guard let url = urlMaker.endpoint(search: search) else { return [] }
+            let (data, _) = try await URLSession.shared.data(from: url)
             let result = try JSONDecoder().decode([SearchResult].self, from: data)
             return result
         }

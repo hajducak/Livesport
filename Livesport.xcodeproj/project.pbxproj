@@ -15,7 +15,6 @@
 		52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */; };
 		52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */; };
 		52FE78BE2AB3499900F4B26A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78BD2AB3499900F4B26A /* README.md */; };
-		52FE78C12AB34E2600F4B26A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 52FE78C02AB34E2600F4B26A /* ComposableArchitecture */; };
 		52FE78C32AB3526400F4B26A /* CounterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C22AB3526400F4B26A /* CounterFeature.swift */; };
 		52FE78C72AB362B700F4B26A /* CounterFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C62AB362B700F4B26A /* CounterFeatureTests.swift */; };
 		52FE78C92AB3756100F4B26A /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C82AB3756100F4B26A /* NumberFactClient.swift */; };
@@ -30,6 +29,7 @@
 		52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */; };
 		52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */; };
 		52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E02AB59BBF00F4B26A /* SearchResult.swift */; };
+		52FE78E42AB864D700F4B26A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 52FE78E32AB864D700F4B26A /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52FE78C12AB34E2600F4B26A /* ComposableArchitecture in Frameworks */,
+				52FE78E42AB864D700F4B26A /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 			);
 			name = Livesport;
 			packageProductDependencies = (
-				52FE78C02AB34E2600F4B26A /* ComposableArchitecture */,
+				52FE78E32AB864D700F4B26A /* ComposableArchitecture */,
 			);
 			productName = Livesport;
 			productReference = 52FE78902AB3450B00F4B26A /* Livesport.app */;
@@ -292,7 +292,7 @@
 			);
 			mainGroup = 52FE78872AB3450B00F4B26A;
 			packageReferences = (
-				52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				52FE78E22AB864D700F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 52FE78912AB3450B00F4B26A /* Products */;
 			projectDirPath = "";
@@ -683,20 +683,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		52FE78E22AB864D700F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		52FE78C02AB34E2600F4B26A /* ComposableArchitecture */ = {
+		52FE78E32AB864D700F4B26A /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 52FE78BF2AB34E2600F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = 52FE78E22AB864D700F4B26A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

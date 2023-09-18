@@ -10,18 +10,22 @@ import ComposableArchitecture
 struct ResultsFeature: Reducer {
     struct State: Equatable {
         @BindingState var search = ""
-        var result: [SearchResult] = []
+        var result: [SearchResult] = [] // TODO: empty view
         var isLoading: Bool = false
         var isSearchValid: Bool?
-        // TODO: error handling - api error: add empty view and error view
+        @PresentationState var alert: AlertState<Action.Alert>?
     }
 
     enum Action: Equatable {
-        case searchResponse([SearchResult])
+        case searchResponse(TaskResult<[SearchResult]>)
         case searchButtonTapped
         case filterButtonTapped
-        // case binding(BindingAction<String>) // How to use BindableAction and BindingReducer ?
+        // case binding(BindingAction<String>) // How to use BindableAction and BindingReducer?
         case textChange(String)
+        case alert(PresentationAction<Alert>)
+        enum Alert: Equatable {
+            case retrySearch
+        }
     }
     
     @Dependency(\.search) var search
@@ -29,7 +33,7 @@ struct ResultsFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .searchButtonTapped:
+            case .searchButtonTapped, .alert(.presented(.retrySearch)):
                 guard state.search.count >= 2 else {
                     state.isSearchValid = false
                     return .none
@@ -38,11 +42,26 @@ struct ResultsFeature: Reducer {
                 state.result = []
                 state.isLoading = true
                 return .run { [search = state.search] send in
-                    try await send(.searchResponse(self.search.fetch(search)))
+                    await send(.searchResponse(
+                        TaskResult { try await self.search.fetch(search) }
+                    ))
                 }
-            case let .searchResponse(result):
+            case let .searchResponse(.success(result)):
                 state.result = result
                 state.isLoading = false
+                return .none
+            case .alert:
+                return .none
+            case let .searchResponse(.failure(error)):
+                state.result = []
+                state.isLoading = false
+                state.alert = AlertState {
+                    TextState("Vyskytla sa chyba: \(error.localizedDescription)")
+                } actions: {
+                    ButtonState(role: .destructive, action: .retrySearch) {
+                        TextState("Znova")
+                    }
+                }
                 return .none
             case let .textChange(searchText):
                 state.search = searchText
@@ -50,6 +69,6 @@ struct ResultsFeature: Reducer {
             case .filterButtonTapped:
                 return .none
             }
-        }
+        }.ifLet(\.$alert, action: /Action.alert)
     }
 }
