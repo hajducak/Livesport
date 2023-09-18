@@ -31,7 +31,7 @@ struct ResultsFeature: Reducer {
         }
     }
 
-    @Dependency(\.search) var search
+    @Dependency(\.searchData) var searchDownloader
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -46,7 +46,7 @@ struct ResultsFeature: Reducer {
                 state.isLoading = true
                 return .run { [search = state.search] send in
                     await send(.searchResponse(
-                        TaskResult { try await self.search.fetch(search) }
+                        TaskResult { try await self.searchDownloader.fetch(search) }
                     ))
                 }
             case let .searchResponse(.success(result)):

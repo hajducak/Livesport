@@ -32,6 +32,7 @@
 		52FE78E42AB864D700F4B26A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 52FE78E32AB864D700F4B26A /* ComposableArchitecture */; };
 		52FE78E72AB8813700F4B26A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E62AB8813700F4B26A /* LoadingView.swift */; };
 		52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78E82AB8816700F4B26A /* EmptyView.swift */; };
+		52FE78EB2AB8900A00F4B26A /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EA2AB8900A00F4B26A /* ImageClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		52FE78E02AB59BBF00F4B26A /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		52FE78E62AB8813700F4B26A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		52FE78E82AB8816700F4B26A /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		52FE78EA2AB8900A00F4B26A /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */,
 				52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */,
 				52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */,
+				52FE78EA2AB8900A00F4B26A /* ImageClient.swift */,
 				52FE78E02AB59BBF00F4B26A /* SearchResult.swift */,
 			);
 			path = Results;
@@ -359,6 +362,7 @@
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
 				52FE78CE2AB3797700F4B26A /* ContactsView.swift in Sources */,
 				52FE78D82AB496DC00F4B26A /* ContactDetailView.swift in Sources */,
+				52FE78EB2AB8900A00F4B26A /* ImageClient.swift in Sources */,
 				52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */,
 				52FE78E72AB8813700F4B26A /* LoadingView.swift in Sources */,
 				52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */,

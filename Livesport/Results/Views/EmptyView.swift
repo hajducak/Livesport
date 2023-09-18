@@ -34,6 +34,7 @@ struct EmptySearchView: View {
 
     var body: some View {
         VStack(spacing: 8) {
+            Spacer()
             Image("empty-search")
             Text(state.title)
                 .multilineTextAlignment(.center)
@@ -42,7 +43,10 @@ struct EmptySearchView: View {
                 Text($0)
                     .multilineTextAlignment(.center)
             }
-        }.padding(.horizontal, 10)
+            Spacer()
+        }
+            .padding(.horizontal, 10)
+            .modifier(FlexWidthModifier())
     }
 }
 

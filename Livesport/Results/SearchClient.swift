@@ -8,14 +8,6 @@
 import Foundation
 import ComposableArchitecture
 
-enum NetworkError: Error {
-    case transportError(Error)
-    case urlError
-    case noData
-    case serverError(statusCode: Int)
-    case decodingError(Error)
-}
-
 struct SearchClient {
     var fetch: (String) async throws -> [SearchResult]
 }
@@ -33,7 +25,7 @@ extension SearchClient: DependencyKey {
 }
 
 extension DependencyValues {
-    var search: SearchClient {
+    var searchData: SearchClient {
         get { self[SearchClient.self] }
         set { self[SearchClient.self] = newValue }
     }

@@ -28,7 +28,7 @@ struct ResultsView: View {
                             Button {
                                 viewStore.send(.searchButtonTapped)
                             } label: {
-                                Text("Vyhľadaj")
+                                Text("Search")
                                     .foregroundColor(.white)
                                     .padding(6)
                             }
@@ -63,16 +63,10 @@ struct ResultsView: View {
                                 Text(item.name)
                             }
                                 .emptyPlaceholder(viewStore.result) {
-                                    VStack {
-                                        Spacer()
-                                        EmptySearchView(state: viewStore.emptyState)
-                                            .modifier(FlexWidthModifier())
-                                        Spacer()
-                                    }
+                                    EmptySearchView(state: viewStore.emptyState)
                                 }
                         }
                     }
-                        .padding()
                     Spacer()
                 }
                     .navigationTitle("Výsledky")
@@ -100,7 +94,7 @@ struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ResultsView(
             store: Store(
-                initialState: ResultsFeature.State(emptyState: .errorSearch("One or more values are missing"))
+                initialState: ResultsFeature.State(search: "dj", emptyState: .errorSearch("One or more values are missing!"))
             ) {
                 ResultsFeature()
             }
