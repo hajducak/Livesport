@@ -4,30 +4,33 @@
 //
 //  Created by Marek Hajdučák on 15/09/2023.
 //
+// NOTES:
+// 1. How to use BindableAction and BindingReducer? - case binding(BindingAction<String>)
 
 import ComposableArchitecture
 
 struct ResultsFeature: Reducer {
     struct State: Equatable {
         @BindingState var search = ""
-        var result: [SearchResult] = [] // TODO: empty view
+        @BindingState var emptyState: EmptyState = .empty
+        var result: [SearchResult] = []
         var isLoading: Bool = false
         var isSearchValid: Bool?
         @PresentationState var alert: AlertState<Action.Alert>?
     }
-
+    
+    
     enum Action: Equatable {
         case searchResponse(TaskResult<[SearchResult]>)
         case searchButtonTapped
         case filterButtonTapped
-        // case binding(BindingAction<String>) // How to use BindableAction and BindingReducer?
         case textChange(String)
         case alert(PresentationAction<Alert>)
         enum Alert: Equatable {
             case retrySearch
         }
     }
-    
+
     @Dependency(\.search) var search
 
     var body: some ReducerOf<Self> {
@@ -47,6 +50,9 @@ struct ResultsFeature: Reducer {
                     ))
                 }
             case let .searchResponse(.success(result)):
+                if result.isEmpty {
+                    state.emptyState = .emptySearch
+                }
                 state.result = result
                 state.isLoading = false
                 return .none
@@ -54,6 +60,7 @@ struct ResultsFeature: Reducer {
                 return .none
             case let .searchResponse(.failure(error)):
                 state.result = []
+                state.emptyState = .errorSearch(error.localizedDescription)
                 state.isLoading = false
                 state.alert = AlertState {
                     TextState("Vyskytla sa chyba: \(error.localizedDescription)")

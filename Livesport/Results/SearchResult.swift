@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResult: Codable, Equatable, Hashable {
+struct SearchResult: Codable, Equatable, Hashable, Identifiable {
     let id: String
     let url: String
     let name: String

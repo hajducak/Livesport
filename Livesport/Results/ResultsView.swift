@@ -20,7 +20,7 @@ struct ResultsView: View {
                             Image(systemName: "magnifyingglass")
                                 .font(.title3)
                                 .padding(.leading, 8)
-                                .foregroundColor(Color(UIColor.systemGray))
+                                .foregroundColor(Color(.systemGray))
                             TextField(
                                 "Vyhľadaj výsledky",
                                 text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
@@ -37,7 +37,6 @@ struct ResultsView: View {
                                 .padding(4)
                                 
                         }
-                            //.padding(.vertical, 8)
                             .background(Color(.systemGray3).cornerRadius(8))
                         if let isValid = viewStore.isSearchValid, !isValid {
                             Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
@@ -51,7 +50,7 @@ struct ResultsView: View {
                             Color.red.cornerRadius(8)
                         ).overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
+                                .stroke(.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
                         )
                             .animation(.default, value: viewStore.isSearchValid)
                             .padding(.horizontal)
@@ -60,9 +59,17 @@ struct ResultsView: View {
                         if viewStore.isLoading {
                             LoadingView()
                         } else {
-                            ForEach(viewStore.result, id: \.self) { result in
-                                Text(result.name)
+                            List(viewStore.result) { item in
+                                Text(item.name)
                             }
+                                .emptyPlaceholder(viewStore.result) {
+                                    VStack {
+                                        Spacer()
+                                        EmptySearchView(state: viewStore.emptyState)
+                                            .modifier(FlexWidthModifier())
+                                        Spacer()
+                                    }
+                                }
                         }
                     }
                         .padding()
@@ -89,42 +96,14 @@ struct ResultsView: View {
     }
 }
 
-struct LoadingView: View {
-    var loadingText: String = "Downloading..."
-
-    var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                ProgressView(loadingText)
-                    .controlSize(.large)
-                    .font(.title3)
-                Spacer()
-            }
-            Spacer()
-        }
-    }
-}
-
 struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ResultsView(
             store: Store(
-                initialState: ResultsFeature.State()
+                initialState: ResultsFeature.State(emptyState: .errorSearch("One or more values are missing"))
             ) {
                 ResultsFeature()
             }
         )
-    }
-}
-
-struct ValidationModifier: ViewModifier {
-    @Binding var isValid: Bool
-    var text: String?
-
-    func body(content: Content) -> some View {
-        
-            // .animation(.default)
     }
 }
