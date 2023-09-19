@@ -34,6 +34,7 @@ final class ResultsTests: XCTestCase {
         await store.receive(.searchResponse(.success([SearchResult.dummy]))) {
             $0.isLoading = false
             $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0) })
+            $0.searchModels = [SearchResult.dummy]
         }
     }
 
@@ -99,13 +100,15 @@ final class ResultsTests: XCTestCase {
             $0.emptyState = .errorSearch("The operation couldn’t be completed. (NSURLErrorDomain error 400.)")
             $0.isLoading = false
             $0.searchedData = []
-            $0.alert = AlertState {
-                TextState("Vyskytla sa chyba: \("The operation couldn’t be completed. (NSURLErrorDomain error 400.)")")
-            } actions: {
-                ButtonState(role: .destructive, action: .retrySearch) {
-                    TextState("Znova")
+            $0.destination = .alert(
+                AlertState {
+                    TextState("Vyskytla sa chyba: \("The operation couldn’t be completed. (NSURLErrorDomain error 400.)")")
+                } actions: {
+                    ButtonState(role: .destructive, action: .retrySearch) {
+                        TextState("Znova")
+                    }
                 }
-            }
+            )
         }
     }
     
@@ -131,6 +134,27 @@ final class ResultsTests: XCTestCase {
             $0.selectedSportFilter = "2"
             $0.sportFilters.forEach { $0.isSelected = false }
             $0.sportFilters.first { $0.id == "2" }?.isSelected = true
+        }
+    }
+
+    func test_imageDonloader() async {
+        let store = TestStore(initialState: ResultsFeature.State(searchModels: [SearchResult.dummy])) {
+            ResultsFeature()
+        } withDependencies: {
+            $0.imageDownloader.fetch = { path in
+                return UIImage(systemName: "photo.on.rectangle")?.pngData()
+            }
+        }
+
+        await store.send(.listRowTapped("AZg49Et9")) {
+            $0.selectedDetail = .dummy
+            $0.isLoading = true
+        }
+
+        await store.receive(.imageResponse(UIImage(systemName: "photo.on.rectangle")?.pngData())) {
+            $0.isLoading = false
+            let viewModel = DetailViewModel(result: .dummy, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData())
+            $0.destination = .detail(DetailFeature.State(detail: viewModel))
         }
     }
 }
