@@ -12,6 +12,8 @@ struct SportGroupedList: View {
     var items: [SearchResultViewModel]
     @BindingState var emptyState: EmptyState
 
+    var selection: (String) -> Void
+
     private func groupByCategory(_ items: [SearchResultViewModel]) -> [(String, [SearchResultViewModel])] {
         let grouped = Dictionary(grouping: items, by: { $0.sport })
         return grouped.sorted(by: { $0.key < $1.key })
@@ -22,7 +24,19 @@ struct SportGroupedList: View {
             ForEach(groupByCategory(items), id: \.0) { pair in
                 Section(header: Text(pair.0)) {
                     ForEach(pair.1) { item in
-                        Text(item.name)
+                        Button {
+                            selection(item.id)
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(systemName: "photo.fill") // TODO: image from API
+                                Text(item.name)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color(.systemGray2))
+                            }
+                                .modifier(FlexWidthModifier(alignment: .leading))
+                                .foregroundColor(.primary)
+                        }
                     }
                 }
             }
@@ -44,8 +58,7 @@ struct SportGroupedList_Previews: PreviewProvider {
                 SearchResultViewModel(id: "4", name: "Kika", sport: "Bowling"),
                 SearchResultViewModel(id: "5", name: "Veronika", sport: "Bowling"),
                 SearchResultViewModel(id: "6", name: "Michal", sport: "Futbal"),
-            ],
-            emptyState: .empty
+            ], emptyState: .empty, selection: { _ in }
         )
     }
 }

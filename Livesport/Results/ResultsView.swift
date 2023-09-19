@@ -15,75 +15,15 @@ struct ResultsView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
                 VStack(alignment: .leading) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack(alignment: .center, spacing: 4) {
-                            HStack(alignment: .center, spacing: 8) {
-                                Image(systemName: "magnifyingglass")
-                                    .font(.title3)
-                                    .padding(.leading, 8)
-                                    .foregroundColor(Color(.systemGray))
-                                TextField(
-                                    "Vyhľadaj výsledky",
-                                    text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
-                                )
-                            }
-                                .frame(height: 48)
-                                .background(Color(.systemGray4).cornerRadius(8, corners: [.bottomLeft, .topLeft]))
-                            
-                            Button {
-                                viewStore.send(.searchButtonTapped)
-                            } label: {
-                                Text("Search")
-                                    .foregroundColor(.white)
-                            }
-                                .frame(height: 48)
-                                .padding(.horizontal, 8)
-                                .background(Color(UIColor.systemBlue).cornerRadius(8, corners: [.bottomRight, .topRight]))
-                        }
-                            
-                        if let isValid = viewStore.isSearchValid, !isValid {
-                            Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
-                                .font(Font.caption).bold()
-                                .foregroundColor(.white)
-                                .padding(.bottom, 6)
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                        .background(
-                            Color.red.opacity((viewStore.isSearchValid ?? true) ? 0 : 1).cornerRadius(8)
-                        ).overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
-                        )
-                            .animation(.default, value: viewStore.isSearchValid)
-                            .padding(.horizontal)
+                    searchBar()
                     VStack(alignment: .leading) {
-                        HStack(spacing: 8) {
-                            ForEach(viewStore.typeFilters, id: \.self) { viewModel in
-                                FilterTag(viewModel: viewModel, selection: { model in
-                                    viewStore.send(.typeFilterTagSelected(model.id))
-                                })
-                            }
-                        }
-                            .padding(.horizontal)
-                        VStack(alignment:. leading, spacing: 8) {
-                            Text("Sports:")
-                                .font(.headline).bold()
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .center, spacing: 8) {
-                                    ForEach(viewStore.sportFilters.indices, id: \.self) { index in
-                                        FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
-                                            viewStore.send(.sportFilterTagSelected(model.id))
-                                        })
-                                    }
-                                }
-                            }
-                        }
-                            .padding(.horizontal)
+                        filterViews()
                         if viewStore.isLoading {
                             LoadingView()
                         } else {
-                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState)
+                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState, selection: { id in
+                                viewStore.send(.listRowTapped(id))
+                            })
                         }
                     }
                     Spacer()
@@ -92,11 +32,94 @@ struct ResultsView: View {
             }
         }
             .alert(
-                store: self.store.scope(
-                    state: \.$alert,
-                    action: { .alert($0) }
-                )
+                store: self.store.scope(state: \.$destination, action: { .destination($0) }),
+                state: /ResultsFeature.Destination.State.alert,
+                action: ResultsFeature.Destination.Action.alert
             )
+            .sheet(
+                store: self.store.scope(state: \.$destination, action: { .destination($0) }),
+                state: /ResultsFeature.Destination.State.detail,
+                action: ResultsFeature.Destination.Action.detail
+            ) { detailStore in
+                NavigationStack {
+                    DetailView(store: detailStore)
+                }
+            }
+    }
+
+    @ViewBuilder
+    private func searchBar() -> some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(alignment: .center, spacing: 4) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "magnifyingglass")
+                            .font(.title3)
+                            .padding(.leading, 8)
+                            .foregroundColor(Color(.systemGray))
+                        TextField(
+                            "Vyhľadaj výsledky",
+                            text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
+                        )
+                    }
+                        .frame(height: 48)
+                        .background(Color(.systemGray4).cornerRadius(8, corners: [.bottomLeft, .topLeft]))
+                    
+                    Button {
+                        viewStore.send(.searchButtonTapped)
+                    } label: {
+                        Text("Search")
+                            .foregroundColor(.white)
+                    }
+                        .frame(height: 48)
+                        .padding(.horizontal, 8)
+                        .background(Color(UIColor.systemBlue).cornerRadius(8, corners: [.bottomRight, .topRight]))
+                }
+                if let isValid = viewStore.isSearchValid, !isValid {
+                    Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
+                        .font(Font.caption).bold()
+                        .foregroundColor(.white)
+                        .padding(.bottom, 6)
+                        .padding(.horizontal, 8)
+                }
+            }
+                .background(
+                    Color.red.opacity((viewStore.isSearchValid ?? true) ? 0 : 1).cornerRadius(8)
+                ).overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(.red, lineWidth: viewStore.isSearchValid ?? true ? 0 : 2)
+                )
+                    .animation(.default, value: viewStore.isSearchValid)
+                    .padding(.horizontal)
+        }
+    }
+
+    @ViewBuilder
+    private func filterViews() -> some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            HStack(spacing: 8) {
+                ForEach(viewStore.typeFilters, id: \.self) { viewModel in
+                    FilterTag(viewModel: viewModel, selection: { model in
+                        viewStore.send(.typeFilterTagSelected(model.id))
+                    })
+                }
+            }
+                .padding(.horizontal)
+            VStack(alignment:. leading, spacing: 8) {
+                Text("Sports:")
+                    .font(.headline).bold()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: 8) {
+                        ForEach(viewStore.sportFilters.indices, id: \.self) { index in
+                            FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
+                                viewStore.send(.sportFilterTagSelected(model.id))
+                            })
+                        }
+                    }
+                }
+            }
+                .padding(.horizontal)
+        }
     }
 }
 

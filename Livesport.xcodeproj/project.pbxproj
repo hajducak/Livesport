@@ -36,6 +36,8 @@
 		52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */; };
 		52FE78EF2AB8A32300F4B26A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */; };
 		52FE78F42AB8A66700F4B26A /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78F32AB8A66700F4B26A /* FilterTag.swift */; };
+		52FE78F72AB9A44100F4B26A /* DetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78F62AB9A44100F4B26A /* DetailFeature.swift */; };
+		52FE78F92AB9A4E200F4B26A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78F82AB9A4E200F4B26A /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		52FE78EC2AB89DF700F4B26A /* SportGroupedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportGroupedList.swift; sourceTree = "<group>"; };
 		52FE78EE2AB8A32300F4B26A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		52FE78F32AB8A66700F4B26A /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
+		52FE78F62AB9A44100F4B26A /* DetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeature.swift; sourceTree = "<group>"; };
+		52FE78F82AB9A4E200F4B26A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +242,8 @@
 		52FE78F52AB9894A00F4B26A /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				52FE78F62AB9A44100F4B26A /* DetailFeature.swift */,
+				52FE78F82AB9A4E200F4B26A /* DetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */,
 				52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */,
 				52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */,
+				52FE78F92AB9A4E200F4B26A /* DetailView.swift in Sources */,
 				52FE78F42AB8A66700F4B26A /* FilterTag.swift in Sources */,
 				52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */,
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
@@ -393,6 +400,7 @@
 				52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */,
 				52FE78E72AB8813700F4B26A /* LoadingView.swift in Sources */,
 				52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */,
+				52FE78F72AB9A44100F4B26A /* DetailFeature.swift in Sources */,
 				52FE78C92AB3756100F4B26A /* NumberFactClient.swift in Sources */,
 				52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */,
 				52FE78CC2AB3790900F4B26A /* ContactsFeature.swift in Sources */,

@@ -10,6 +10,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 struct SearchResultViewModel: Equatable, Identifiable, Hashable {
     let id: String
@@ -54,35 +55,44 @@ struct ResultsFeature: Reducer {
             FilterModel(id: "2,3,4", imageName: "person.fill", title: "Participants")
         ]
         var searchedData: [SearchResultViewModel] = []
+        var searchModels: [SearchResult] = []
+        var selectedDetail: SearchResult?
         var isLoading: Bool = false
         var isSearchValid: Bool?
-        @PresentationState var alert: AlertState<Action.Alert>?
+        @PresentationState var destination: Destination.State?
+        var path = StackState<DetailFeature.State>()
     }
 
     enum Action: Equatable {
         case searchResponse(TaskResult<[SearchResult]>)
+        case imageResponse(Data?)
         case typeFilterTagSelected(String)
         case sportFilterTagSelected(String)
         case searchButtonTapped
         case textChange(String)
-        case alert(PresentationAction<Alert>)
+        case destination(PresentationAction<Destination.Action>)
+//        case path(StackAction<DetailFeature.State, DetailFeature.Action>)
+        case listRowTapped(String)
+
         enum Alert: Equatable {
             case retrySearch
         }
     }
 
     @Dependency(\.searchData) var searchDownloader
+    @Dependency(\.imageDownloader) var  imageDownloader
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .searchButtonTapped, .alert(.presented(.retrySearch)):
+            case .searchButtonTapped, .destination(.presented(.alert(.retrySearch))):
                 guard state.search.count >= 2 else {
                     state.isSearchValid = false
                     return .none
                 }
                 state.isSearchValid = true
                 state.searchedData = []
+                state.searchModels = []
                 state.isLoading = true
                 return .run { [search = state.search, typeIds = state.selectedTypeFilter, sportIds = state.selectedSportFilter] send in
                     await send(.searchResponse(
@@ -94,21 +104,23 @@ struct ResultsFeature: Reducer {
                     state.emptyState = .emptySearch
                 }
                 state.searchedData = results.compactMap({ SearchResultViewModel(result: $0) })
+                state.searchModels = results
                 state.isLoading = false
-                return .none
-            case .alert:
                 return .none
             case let .searchResponse(.failure(error)):
                 state.searchedData = []
+                state.searchModels = []
                 state.emptyState = .errorSearch(error.localizedDescription)
                 state.isLoading = false
-                state.alert = AlertState {
-                    TextState("Vyskytla sa chyba: \(error.localizedDescription)")
-                } actions: {
-                    ButtonState(role: .destructive, action: .retrySearch) {
-                        TextState("Znova")
+                state.destination = .alert(
+                    AlertState {
+                        TextState("Vyskytla sa chyba: \(error.localizedDescription)")
+                    } actions: {
+                        ButtonState(role: .destructive, action: .retrySearch) {
+                            TextState("Znova")
+                        }
                     }
-                }
+                )
                 return .none
             case let .textChange(searchText):
                 state.search = searchText
@@ -123,7 +135,52 @@ struct ResultsFeature: Reducer {
                 state.sportFilters.forEach { $0.isSelected = false }
                 state.sportFilters.first { $0.id == id }?.isSelected = true
                 return .none
+            case let .listRowTapped(id):
+                guard let detail = state.searchModels.first(where: { $0.id == id }) else { return .none }
+                state.selectedDetail = detail
+                let imagePath = detail.images.first { $0.variantTypeId == 15 }?.path ?? ""
+                state.isLoading = true
+                return .run { send in
+                    try await send(.imageResponse(self.imageDownloader.fetch(imagePath)))
+                }
+            case let .imageResponse(data):
+                state.isLoading = false
+                guard let detail = state.selectedDetail else { return .none }
+                let viewModel = DetailViewModel(result: detail, imageData: data)
+                state.destination = .detail(DetailFeature.State(detail: viewModel))
+                return .none
+            case .destination:
+                return .none
+//            case .path:
+//                return .none
             }
-        }.ifLet(\.$alert, action: /Action.alert)
+        }
+            .ifLet(\.$destination, action: /Action.destination) {
+                Destination()
+            }
+//            .forEach(\.path, action: /Action.path) {
+//                DetailFeature()
+//            }
+    }
+}
+
+
+extension ResultsFeature {
+    struct Destination: Reducer {
+        enum State: Equatable {
+            case detail(DetailFeature.State)
+            case alert(AlertState<ResultsFeature.Action.Alert>)
+        }
+
+        enum Action: Equatable {
+            case detail(DetailFeature.Action)
+            case alert(ResultsFeature.Action.Alert)
+        }
+
+        var body: some ReducerOf<Self> {
+            Scope(state: /State.detail, action: /Action.detail) {
+                DetailFeature()
+            }
+        }
     }
 }

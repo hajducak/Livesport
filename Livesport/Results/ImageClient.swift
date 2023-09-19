@@ -10,7 +10,7 @@ import SwiftUI
 import Foundation
 
 struct ImageClient {
-    var fetch: (String) async throws -> UIImage?
+    var fetch: (String) async throws -> Data?
 }
 
 extension ImageClient: DependencyKey {
@@ -18,7 +18,7 @@ extension ImageClient: DependencyKey {
         fetch: { path in
             guard let url = URL(string: "https://www.livesport.cz/res/image/data/\(path)") else { return nil }
             let (data, _) = try await URLSession.shared.data(from: url)
-            return UIImage(data: data)
+            return data
         }
     )
 }
