@@ -11,7 +11,7 @@
 		52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78952AB3450B00F4B26A /* CounterView.swift */; };
 		52FE78982AB3450C00F4B26A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78972AB3450C00F4B26A /* Assets.xcassets */; };
 		52FE789B2AB3450C00F4B26A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */; };
-		52FE78A52AB3450D00F4B26A /* LivesportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78A42AB3450D00F4B26A /* LivesportTests.swift */; };
+		52FE78A52AB3450D00F4B26A /* ResultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78A42AB3450D00F4B26A /* ResultsTests.swift */; };
 		52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */; };
 		52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */; };
 		52FE78BE2AB3499900F4B26A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78BD2AB3499900F4B26A /* README.md */; };
@@ -62,7 +62,7 @@
 		52FE78972AB3450C00F4B26A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52FE78A02AB3450D00F4B26A /* LivesportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		52FE78A42AB3450D00F4B26A /* LivesportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportTests.swift; sourceTree = "<group>"; };
+		52FE78A42AB3450D00F4B26A /* ResultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTests.swift; sourceTree = "<group>"; };
 		52FE78AA2AB3450D00F4B26A /* LivesportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITests.swift; sourceTree = "<group>"; };
 		52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 			children = (
 				52FE78C62AB362B700F4B26A /* CounterFeatureTests.swift */,
 				52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */,
-				52FE78A42AB3450D00F4B26A /* LivesportTests.swift */,
+				52FE78A42AB3450D00F4B26A /* ResultsTests.swift */,
 			);
 			path = LivesportTests;
 			sourceTree = "<group>";
@@ -204,6 +204,7 @@
 		52FE78D92AB4A57A00F4B26A /* Results */ = {
 			isa = PBXGroup;
 			children = (
+				52FE78F52AB9894A00F4B26A /* Detail */,
 				52FE78E52AB8811F00F4B26A /* Views */,
 				52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */,
 				52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */,
@@ -232,6 +233,13 @@
 				52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		52FE78F52AB9894A00F4B26A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,7 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52FE78A52AB3450D00F4B26A /* LivesportTests.swift in Sources */,
+				52FE78A52AB3450D00F4B26A /* ResultsTests.swift in Sources */,
 				52FE78D42AB4912D00F4B26A /* ContactsFeatureTests.swift in Sources */,
 				52FE78C72AB362B700F4B26A /* CounterFeatureTests.swift in Sources */,
 			);

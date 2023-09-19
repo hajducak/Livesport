@@ -58,31 +58,31 @@ struct ResultsView: View {
                             .animation(.default, value: viewStore.isSearchValid)
                             .padding(.horizontal)
                     VStack(alignment: .leading) {
-                        if viewStore.isLoading {
-                            LoadingView()
-                        } else {
-                            HStack(spacing: 8) {
-                                ForEach(viewStore.typeFilters, id: \.self) { viewModel in
-                                    FilterTag(viewModel: viewModel, selection: { model in
-                                        viewStore.send(.typeFilterTagSelected(model.id))
-                                    })
-                                }
+                        HStack(spacing: 8) {
+                            ForEach(viewStore.typeFilters, id: \.self) { viewModel in
+                                FilterTag(viewModel: viewModel, selection: { model in
+                                    viewStore.send(.typeFilterTagSelected(model.id))
+                                })
                             }
-                                .padding(.horizontal)
-                            VStack(alignment:. leading, spacing: 8) {
-                                Text("Sports:")
-                                    .font(.headline).bold()
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(alignment: .center, spacing: 8) {
-                                        ForEach(viewStore.sportFilters.indices, id: \.self) { index in
-                                            FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
-                                                viewStore.send(.sportFilterTagSelected(model.id))
-                                            })
-                                        }
+                        }
+                            .padding(.horizontal)
+                        VStack(alignment:. leading, spacing: 8) {
+                            Text("Sports:")
+                                .font(.headline).bold()
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    ForEach(viewStore.sportFilters.indices, id: \.self) { index in
+                                        FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
+                                            viewStore.send(.sportFilterTagSelected(model.id))
+                                        })
                                     }
                                 }
                             }
-                                .padding(.horizontal)
+                        }
+                            .padding(.horizontal)
+                        if viewStore.isLoading {
+                            LoadingView()
+                        } else {
                             SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState)
                         }
                     }
