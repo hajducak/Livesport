@@ -21,14 +21,14 @@ struct ResultsView: View {
                         if viewStore.isLoading {
                             LoadingView()
                         } else {
-                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState, selection: { id in
-                                viewStore.send(.listRowTapped(id))
+                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState, selection: { item in
+                                viewStore.send(.listRowTapped(item))
                             })
                         }
                     }
                     Spacer()
                 }
-                    .navigationTitle("Výsledky")
+                    .navigationTitle("Sport results")
             }
         }
             .alert(
@@ -58,7 +58,7 @@ struct ResultsView: View {
                             .padding(.leading, 8)
                             .foregroundColor(Color(.systemGray))
                         TextField(
-                            "Vyhľadaj výsledky",
+                            "Enter search term",
                             text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
                         )
                     }
@@ -76,7 +76,7 @@ struct ResultsView: View {
                         .background(Color(UIColor.systemBlue).cornerRadius(8, corners: [.bottomRight, .topRight]))
                 }
                 if let isValid = viewStore.isSearchValid, !isValid {
-                    Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
+                    Text("Search length must be at least 2 characters.")
                         .font(Font.caption).bold()
                         .foregroundColor(.white)
                         .padding(.bottom, 6)
@@ -98,9 +98,9 @@ struct ResultsView: View {
     private func filterViews() -> some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             HStack(spacing: 8) {
-                ForEach(viewStore.typeFilters, id: \.self) { viewModel in
+                ForEach(viewStore.competitionFilters, id: \.self) { viewModel in
                     FilterTag(viewModel: viewModel, selection: { model in
-                        viewStore.send(.typeFilterTagSelected(model.id))
+                        viewStore.send(.typeFilterTagSelected(CompetitionType(rawValue: model.id)))
                     })
                 }
             }
@@ -112,7 +112,7 @@ struct ResultsView: View {
                     HStack(alignment: .center, spacing: 8) {
                         ForEach(viewStore.sportFilters.indices, id: \.self) { index in
                             FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
-                                viewStore.send(.sportFilterTagSelected(model.id))
+                                viewStore.send(.sportFilterTagSelected(SportType(rawValue: model.id)))
                             })
                         }
                     }

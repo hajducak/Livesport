@@ -13,12 +13,15 @@ import ComposableArchitecture
 @MainActor
 final class ResultsTests: XCTestCase {
 
-    func test_SearchSuccess() async {
+    func test_searchSuccess() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         } withDependencies: {
             $0.searchData.fetch = { search, sportIds, typeIds in
                 [.dummy]
+            }
+            $0.imageDownloader.fetch = { path in
+                return UIImage(systemName: "photo.on.rectangle")?.pngData()
             }
         }
 
@@ -31,14 +34,16 @@ final class ResultsTests: XCTestCase {
             $0.isSearchValid = true
         }
         
-        await store.receive(.searchResponse(.success([SearchResult.dummy]))) {
+        await store.receive(.searchResponse(.success([SearchResult.dummy])))
+
+        await store.receive(.imageResponseByResult([SearchResult.dummy: UIImage(systemName: "photo.on.rectangle")?.pngData()])) {
             $0.isLoading = false
-            $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0) })
-            $0.searchModels = [SearchResult.dummy]
+            $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData()) })
+            $0.searchedModels = [SearchResult.dummy]
         }
     }
 
-    func test_SearchEmpty() async {
+    func test_searchEmpty() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         } withDependencies: {
@@ -64,7 +69,7 @@ final class ResultsTests: XCTestCase {
         
     }
     
-    func test_SearchIncorectInput() async {
+    func test_searchIncorectInput() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         }
@@ -78,7 +83,7 @@ final class ResultsTests: XCTestCase {
         }
     }
 
-    func test_SearchError() async {
+    func test_searchError() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         } withDependencies: {
@@ -112,33 +117,33 @@ final class ResultsTests: XCTestCase {
         }
     }
     
-    func test_TypeFilter() async {
+    func test_competitionFilter() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         }
         
-        await store.send(.typeFilterTagSelected("2,3,4")) {
-            $0.selectedTypeFilter = "2,3,4"
-            $0.typeFilters.forEach { $0.isSelected = false }
-            $0.typeFilters.first { $0.id == "2,3,4" }?.isSelected = true
+        await store.send(.typeFilterTagSelected(.participants)) {
+            $0.selectedCompetitionFilter = .participants
+            $0.competitionFilters.forEach { $0.isSelected = false }
+            $0.competitionFilters.first { $0.id == CompetitionType.participants.rawValue }?.isSelected = true
         }
     }
     
     
-    func test_SportFilter() async {
+    func test_sportFilter() async {
         let store = TestStore(initialState: ResultsFeature.State()) {
             ResultsFeature()
         }
         
-        await store.send(.sportFilterTagSelected("2")) {
-            $0.selectedSportFilter = "2"
+        await store.send(.sportFilterTagSelected(.baseball)) {
+            $0.selectedSportFilter = .baseball
             $0.sportFilters.forEach { $0.isSelected = false }
-            $0.sportFilters.first { $0.id == "2" }?.isSelected = true
+            $0.sportFilters.first { $0.id == SportType.baseball.rawValue }?.isSelected = true
         }
     }
 
     func test_imageDonloader() async {
-        let store = TestStore(initialState: ResultsFeature.State(searchModels: [SearchResult.dummy])) {
+        let store = TestStore(initialState: ResultsFeature.State(searchedModels: [SearchResult.dummy])) {
             ResultsFeature()
         } withDependencies: {
             $0.imageDownloader.fetch = { path in
@@ -146,12 +151,7 @@ final class ResultsTests: XCTestCase {
             }
         }
 
-        await store.send(.listRowTapped("AZg49Et9")) {
-            $0.selectedDetail = .dummy
-            $0.isLoading = true
-        }
-
-        await store.receive(.imageResponse(UIImage(systemName: "photo.on.rectangle")?.pngData())) {
+        await store.send(.listRowTapped(SearchResultViewModel(id: "AZg49Et9", name: "", sport: "", imageData: UIImage(systemName: "photo.on.rectangle")?.pngData()))) {
             $0.isLoading = false
             let viewModel = DetailViewModel(result: .dummy, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData())
             $0.destination = .detail(DetailFeature.State(detail: viewModel))

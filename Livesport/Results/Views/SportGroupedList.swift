@@ -12,7 +12,7 @@ struct SportGroupedList: View {
     var items: [SearchResultViewModel]
     @BindingState var emptyState: EmptyState
 
-    var selection: (String) -> Void
+    var selection: (SearchResultViewModel) -> Void
 
     private func groupByCategory(_ items: [SearchResultViewModel]) -> [(String, [SearchResultViewModel])] {
         let grouped = Dictionary(grouping: items, by: { $0.sport })
@@ -25,10 +25,18 @@ struct SportGroupedList: View {
                 Section(header: Text(pair.0)) {
                     ForEach(pair.1) { item in
                         Button {
-                            selection(item.id)
+                            selection(item)
                         } label: {
                             HStack(spacing: 8) {
-                                Image(systemName: "photo.fill") // TODO: image from API
+                                if let data = item.imageData, let uiImage = UIImage(data: data) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .frame(width: 15, height: 15)
+                                } else {
+                                    Image("image-placeholder")
+                                        .resizable()
+                                        .frame(width: 16, height: 15)
+                                }
                                 Text(item.name)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -52,12 +60,12 @@ struct SportGroupedList_Previews: PreviewProvider {
     static var previews: some View {
         SportGroupedList(
             items: [
-                SearchResultViewModel(id: "1", name: "Robert", sport: "Tenis"),
-                SearchResultViewModel(id: "2", name: "Marek", sport: "Tenis"),
-                SearchResultViewModel(id: "3", name: "Ivan", sport: "Tenis"),
-                SearchResultViewModel(id: "4", name: "Kika", sport: "Bowling"),
-                SearchResultViewModel(id: "5", name: "Veronika", sport: "Bowling"),
-                SearchResultViewModel(id: "6", name: "Michal", sport: "Futbal"),
+                SearchResultViewModel(id: "1", name: "Robert", sport: "Tenis", imageData: nil),
+                SearchResultViewModel(id: "2", name: "Marek", sport: "Tenis", imageData: nil),
+                SearchResultViewModel(id: "3", name: "Ivan", sport: "Tenis", imageData: nil),
+                SearchResultViewModel(id: "4", name: "Kika", sport: "Bowling", imageData: nil),
+                SearchResultViewModel(id: "5", name: "Veronika", sport: "Bowling", imageData: nil),
+                SearchResultViewModel(id: "6", name: "Michal", sport: "Futbal", imageData: nil),
             ], emptyState: .empty, selection: { _ in }
         )
     }

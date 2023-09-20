@@ -15,9 +15,9 @@ enum EmptyState: Equatable {
 
     var title: String {
         switch self {
-        case .empty: return "Vyhľadajte nové výsledky zadaním vstupu do vyhľadávacieho poľa."
-        case .emptySearch: return "Pre zadaný vstup neexistujú žiadne dáta."
-        case .errorSearch(_): return "Pri vyhľadávaní nastala chyba:"
+        case .empty: return "Find new results by entering term in the search box."
+        case .emptySearch: return "No data exists for the entered input."
+        case .errorSearch(_): return "An error occurred while searching:"
         }
     }
 
