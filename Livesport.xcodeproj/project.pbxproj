@@ -8,23 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78932AB3450B00F4B26A /* LivesportApp.swift */; };
-		52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78952AB3450B00F4B26A /* CounterView.swift */; };
 		52FE78982AB3450C00F4B26A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78972AB3450C00F4B26A /* Assets.xcassets */; };
 		52FE789B2AB3450C00F4B26A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */; };
 		52FE78A52AB3450D00F4B26A /* ResultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78A42AB3450D00F4B26A /* ResultsTests.swift */; };
 		52FE78AF2AB3450D00F4B26A /* LivesportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */; };
 		52FE78B12AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */; };
 		52FE78BE2AB3499900F4B26A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52FE78BD2AB3499900F4B26A /* README.md */; };
-		52FE78C32AB3526400F4B26A /* CounterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C22AB3526400F4B26A /* CounterFeature.swift */; };
-		52FE78C72AB362B700F4B26A /* CounterFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C62AB362B700F4B26A /* CounterFeatureTests.swift */; };
-		52FE78C92AB3756100F4B26A /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78C82AB3756100F4B26A /* NumberFactClient.swift */; };
-		52FE78CC2AB3790900F4B26A /* ContactsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78CB2AB3790900F4B26A /* ContactsFeature.swift */; };
-		52FE78CE2AB3797700F4B26A /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78CD2AB3797700F4B26A /* ContactsView.swift */; };
-		52FE78D02AB37A1A00F4B26A /* AddContactFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78CF2AB37A1A00F4B26A /* AddContactFeature.swift */; };
-		52FE78D22AB37A6F00F4B26A /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D12AB37A6F00F4B26A /* AddContactView.swift */; };
-		52FE78D42AB4912D00F4B26A /* ContactsFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */; };
-		52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D52AB4965B00F4B26A /* ContactDetailFeature.swift */; };
-		52FE78D82AB496DC00F4B26A /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */; };
 		52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */; };
 		52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */; };
 		52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */; };
@@ -60,7 +49,6 @@
 /* Begin PBXFileReference section */
 		52FE78902AB3450B00F4B26A /* Livesport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livesport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FE78932AB3450B00F4B26A /* LivesportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportApp.swift; sourceTree = "<group>"; };
-		52FE78952AB3450B00F4B26A /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		52FE78972AB3450C00F4B26A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52FE789A2AB3450C00F4B26A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52FE78A02AB3450D00F4B26A /* LivesportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivesportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,17 +57,7 @@
 		52FE78AE2AB3450D00F4B26A /* LivesportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITests.swift; sourceTree = "<group>"; };
 		52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesportUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		52FE78BD2AB3499900F4B26A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		52FE78C22AB3526400F4B26A /* CounterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFeature.swift; sourceTree = "<group>"; };
 		52FE78C52AB35C6800F4B26A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		52FE78C62AB362B700F4B26A /* CounterFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFeatureTests.swift; sourceTree = "<group>"; };
-		52FE78C82AB3756100F4B26A /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
-		52FE78CB2AB3790900F4B26A /* ContactsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeature.swift; sourceTree = "<group>"; };
-		52FE78CD2AB3797700F4B26A /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
-		52FE78CF2AB37A1A00F4B26A /* AddContactFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFeature.swift; sourceTree = "<group>"; };
-		52FE78D12AB37A6F00F4B26A /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
-		52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeatureTests.swift; sourceTree = "<group>"; };
-		52FE78D52AB4965B00F4B26A /* ContactDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailFeature.swift; sourceTree = "<group>"; };
-		52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		52FE78DA2AB4A58800F4B26A /* ResultsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeature.swift; sourceTree = "<group>"; };
 		52FE78DC2AB4A5BF00F4B26A /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		52FE78DE2AB4BA2000F4B26A /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
@@ -146,8 +124,6 @@
 				52FE78BD2AB3499900F4B26A /* README.md */,
 				52FE78932AB3450B00F4B26A /* LivesportApp.swift */,
 				52FE78D92AB4A57A00F4B26A /* Results */,
-				52FE78CA2AB378ED00F4B26A /* Contact */,
-				52FE78C42AB3575200F4B26A /* Caunter */,
 				52FE78972AB3450C00F4B26A /* Assets.xcassets */,
 				52FE78C52AB35C6800F4B26A /* Info.plist */,
 				52FE78992AB3450C00F4B26A /* Preview Content */,
@@ -166,8 +142,6 @@
 		52FE78A32AB3450D00F4B26A /* LivesportTests */ = {
 			isa = PBXGroup;
 			children = (
-				52FE78C62AB362B700F4B26A /* CounterFeatureTests.swift */,
-				52FE78D32AB4912D00F4B26A /* ContactsFeatureTests.swift */,
 				52FE78A42AB3450D00F4B26A /* ResultsTests.swift */,
 			);
 			path = LivesportTests;
@@ -180,29 +154,6 @@
 				52FE78B02AB3450D00F4B26A /* LivesportUITestsLaunchTests.swift */,
 			);
 			path = LivesportUITests;
-			sourceTree = "<group>";
-		};
-		52FE78C42AB3575200F4B26A /* Caunter */ = {
-			isa = PBXGroup;
-			children = (
-				52FE78C22AB3526400F4B26A /* CounterFeature.swift */,
-				52FE78952AB3450B00F4B26A /* CounterView.swift */,
-				52FE78C82AB3756100F4B26A /* NumberFactClient.swift */,
-			);
-			path = Caunter;
-			sourceTree = "<group>";
-		};
-		52FE78CA2AB378ED00F4B26A /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-				52FE78CB2AB3790900F4B26A /* ContactsFeature.swift */,
-				52FE78CD2AB3797700F4B26A /* ContactsView.swift */,
-				52FE78CF2AB37A1A00F4B26A /* AddContactFeature.swift */,
-				52FE78D12AB37A6F00F4B26A /* AddContactView.swift */,
-				52FE78D52AB4965B00F4B26A /* ContactDetailFeature.swift */,
-				52FE78D72AB496DC00F4B26A /* ContactDetailView.swift */,
-			);
-			path = Contact;
 			sourceTree = "<group>";
 		};
 		52FE78D92AB4A57A00F4B26A /* Results */ = {
@@ -385,28 +336,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52FE78C32AB3526400F4B26A /* CounterFeature.swift in Sources */,
 				52FE78DD2AB4A5BF00F4B26A /* ResultsView.swift in Sources */,
 				52FE78DB2AB4A58800F4B26A /* ResultsFeature.swift in Sources */,
 				52FE78ED2AB89DF700F4B26A /* SportGroupedList.swift in Sources */,
-				52FE78962AB3450B00F4B26A /* CounterView.swift in Sources */,
 				52FE78F92AB9A4E200F4B26A /* DetailView.swift in Sources */,
 				52FE78F42AB8A66700F4B26A /* FilterTag.swift in Sources */,
 				52FE78E92AB8816700F4B26A /* EmptyView.swift in Sources */,
 				52FE78942AB3450B00F4B26A /* LivesportApp.swift in Sources */,
-				52FE78CE2AB3797700F4B26A /* ContactsView.swift in Sources */,
-				52FE78D82AB496DC00F4B26A /* ContactDetailView.swift in Sources */,
 				52FE78EB2AB8900A00F4B26A /* ImageClient.swift in Sources */,
-				52FE78D62AB4965B00F4B26A /* ContactDetailFeature.swift in Sources */,
 				52FE78E72AB8813700F4B26A /* LoadingView.swift in Sources */,
 				52FE78E12AB59BBF00F4B26A /* SearchResult.swift in Sources */,
 				52FE78F72AB9A44100F4B26A /* DetailFeature.swift in Sources */,
-				52FE78C92AB3756100F4B26A /* NumberFactClient.swift in Sources */,
 				52FE78DF2AB4BA2000F4B26A /* SearchClient.swift in Sources */,
-				52FE78CC2AB3790900F4B26A /* ContactsFeature.swift in Sources */,
-				52FE78D02AB37A1A00F4B26A /* AddContactFeature.swift in Sources */,
 				52FE78EF2AB8A32300F4B26A /* RoundedCorner.swift in Sources */,
-				52FE78D22AB37A6F00F4B26A /* AddContactView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,8 +357,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FE78A52AB3450D00F4B26A /* ResultsTests.swift in Sources */,
-				52FE78D42AB4912D00F4B26A /* ContactsFeatureTests.swift in Sources */,
-				52FE78C72AB362B700F4B26A /* CounterFeatureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -549,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
