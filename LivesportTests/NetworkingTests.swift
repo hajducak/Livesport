@@ -14,7 +14,7 @@ import Combine
 class ImageClientTests: XCTestCase {
     let sut = ImageClient.liveValue
 
-    func test_ImageClientFetchSuccess() {
+    func test_imageClientFetchSuccess() {
         let expectation = XCTestExpectation(description: "Image fetch completed")
 
         Task {
@@ -38,16 +38,16 @@ class ImageClientTests: XCTestCase {
 class SearchClientTests: XCTestCase {
     let sut = SearchClient.liveValue
 
-    func test_SearchClientFetch() {
+    func test_searchClientFetch() {
         let expectation = XCTestExpectation(description: "Search fetch completed")
 
         Task {
             do {
                 let searchQuery = "dj"
-                let typeIds = "1,2,3,4"
-                let sportIds = "1,2,3,4,5,6,7,8,9"
+                let competition: CompetitionType = .all
+                let sport: SportType = .all
 
-                let results = try await sut.fetch(searchQuery, typeIds, sportIds)
+                let results = try await sut.fetch(searchQuery, competition, sport)
 
                 XCTAssertFalse(results.isEmpty)
                 expectation.fulfill()
@@ -59,17 +59,16 @@ class SearchClientTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 
-    func test_SearchClientFetchFailure() {
-        let searchClient = SearchClient.liveValue
+    func test_searchClientFetchFailure() {
         let expectation = XCTestExpectation(description: "Search fetch failed")
 
         Task {
             do {
                 let searchQuery = "a"
-                let typeIds = "0"
-                let sportIds = "0"
+                let competition: CompetitionType = .participants
+                let sport: SportType = .americanFootball
                 
-                let results = try await sut.fetch(searchQuery, typeIds, sportIds)
+                let results = try await sut.fetch(searchQuery, competition, sport)
 
                 XCTAssertTrue(results.isEmpty)
                 expectation.fulfill()
@@ -86,17 +85,17 @@ class SearchClientTests: XCTestCase {
 class URLMakerTests: XCTestCase {
     var sut: URLMaker = URLMaker()
 
-    func test_URLMakerEndpoint() {
+    func test_urlMakerEndpoint() {
         let search = "dj"
-        let typeIds = "2,3"
-        let sportIds = "1,2,3,4,5,6,7,8,9"
+        let competition: CompetitionType = .participants
+        let sport: SportType = .all
         
-        let validURL = sut.endpoint(search: search, typeIds: typeIds, sportIds: sportIds)
+        let validURL = sut.endpoint(search: search, competition: competition, sport: sport)
         XCTAssertNotNil(validURL)
 
         let urlString = validURL?.absoluteString
         XCTAssertTrue(urlString?.contains("q=\(search)") ?? false)
-        XCTAssertTrue(urlString?.contains("type-ids=\(typeIds)") ?? false)
-        XCTAssertTrue(urlString?.contains("sport-ids=\(sportIds)") ?? false)
+        XCTAssertTrue(urlString?.contains("type-ids=\(competition.rawValue)") ?? false)
+        XCTAssertTrue(urlString?.contains("sport-ids=\(sport.rawValue)") ?? false)
     }
 }

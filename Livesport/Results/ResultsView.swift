@@ -98,9 +98,9 @@ struct ResultsView: View {
     private func filterViews() -> some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             HStack(spacing: 8) {
-                ForEach(viewStore.typeFilters, id: \.self) { viewModel in
+                ForEach(viewStore.competitionFilters, id: \.self) { viewModel in
                     FilterTag(viewModel: viewModel, selection: { model in
-                        viewStore.send(.typeFilterTagSelected(model.id))
+                        viewStore.send(.typeFilterTagSelected(CompetitionType(rawValue: model.id)))
                     })
                 }
             }
@@ -112,7 +112,7 @@ struct ResultsView: View {
                     HStack(alignment: .center, spacing: 8) {
                         ForEach(viewStore.sportFilters.indices, id: \.self) { index in
                             FilterTag(viewModel: viewStore.sportFilters[index], selection: { model in
-                                viewStore.send(.sportFilterTagSelected(model.id))
+                                viewStore.send(.sportFilterTagSelected(SportType(rawValue: model.id)))
                             })
                         }
                     }

@@ -6,7 +6,7 @@
 //
 // NOTES:
 // 1. How to use BindableAction and BindingReducer? - case binding(BindingAction<String>)
-// 3. How to use path, NavigationStackPath to show navigation destination (Action: case path(StackAction<DetailFeature.State, DetailFeature.Action>), Reducer: .forEach(\.path, action: /Action.path) { DetailFeature() })
+// 2. How to use path, NavigationStackPath to show navigation destination (Action: case path(StackAction<DetailFeature.State, DetailFeature.Action>), Reducer: .forEach(\.path, action: /Action.path) { DetailFeature() })
 //
 
 import ComposableArchitecture
@@ -22,24 +22,24 @@ struct ResultsFeature: Reducer {
         var isLoading: Bool = false
         var isSearchValid: Bool?
 
-        var selectedSportFilter: String = "1,2,3,4,5,6,7,8,9"
+        var selectedSportFilter: SportType = .all
         var sportFilters: [FilterModel] = [
-            FilterModel(id: "1,2,3,4,5,6,7,8,9", imageName: "tray.full.fill", title: "All", isSelected: true),
-            FilterModel(id: "1", imageName: nil, title: "Soccer"),
-            FilterModel(id: "2", imageName: nil, title: "Tenis"),
-            FilterModel(id: "3", imageName: nil, title: "Basketballl"),
-            FilterModel(id: "4", imageName: nil, title: "Hockey"),
-            FilterModel(id: "5", imageName: nil, title: "American Football"),
-            FilterModel(id: "6", imageName: nil, title: "Baseball"),
-            FilterModel(id: "7", imageName: nil, title: "Handball"),
-            FilterModel(id: "8", imageName: nil, title: "Rugby"),
-            FilterModel(id: "9", imageName: nil, title: "Floorball")
+            SportType.all.filter,
+            SportType.soccer.filter,
+            SportType.tenis.filter,
+            SportType.basketballl.filter,
+            SportType.hockey.filter,
+            SportType.americanFootball.filter,
+            SportType.baseball.filter,
+            SportType.handball.filter,
+            SportType.rugby.filter,
+            SportType.floorbal.filter
         ]
-        var selectedTypeFilter: String = "1,2,3,4"
-        var typeFilters: [FilterModel] = [
-            FilterModel(id: "1,2,3,4", imageName: "tray.full.fill", title: "All", isSelected: true),
-            FilterModel(id: "1", imageName: "person.3.fill", title: "Competitions"),
-            FilterModel(id: "2,3,4", imageName: "person.fill", title: "Participants")
+        var selectedCompetitionFilter: CompetitionType = .all
+        var competitionFilters: [FilterModel] = [
+            CompetitionType.all.filter,
+            CompetitionType.competitions.filter,
+            CompetitionType.participants.filter
         ]
 
         var searchedData: [SearchResultViewModel] = []
@@ -49,8 +49,8 @@ struct ResultsFeature: Reducer {
     enum Action: Equatable {
         case searchResponse(TaskResult<[SearchResult]>)
         case imageResponseByResult([SearchResult: Data?])
-        case typeFilterTagSelected(String)
-        case sportFilterTagSelected(String)
+        case typeFilterTagSelected(CompetitionType?)
+        case sportFilterTagSelected(SportType?)
         case searchButtonTapped
         case textChange(String)
         case destination(PresentationAction<Destination.Action>)
@@ -62,7 +62,7 @@ struct ResultsFeature: Reducer {
     }
 
     @Dependency(\.searchData) var searchDownloader
-    @Dependency(\.imageDownloader) var  imageDownloader
+    @Dependency(\.imageDownloader) var imageDownloader
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -76,9 +76,9 @@ struct ResultsFeature: Reducer {
                 state.searchedData = []
                 state.searchedModels = []
                 state.isLoading = true
-                return .run { [search = state.search, typeIds = state.selectedTypeFilter, sportIds = state.selectedSportFilter] send in
+                return .run { [search = state.search, competition = state.selectedCompetitionFilter, sport = state.selectedSportFilter] send in
                     await send(.searchResponse(
-                        TaskResult { try await self.searchDownloader.fetch(search, typeIds, sportIds) }
+                        TaskResult { try await self.searchDownloader.fetch(search, competition, sport) }
                     ))
                 }
             case let .searchResponse(.success(results)):
@@ -118,15 +118,17 @@ struct ResultsFeature: Reducer {
             case let .textChange(searchText):
                 state.search = searchText
                 return .none
-            case let .typeFilterTagSelected(id):
-                state.selectedTypeFilter = id
-                state.typeFilters.forEach { $0.isSelected = false }
-                state.typeFilters.first { $0.id == id }?.isSelected = true
+            case let .typeFilterTagSelected(competition):
+                guard let competition else { return .none }
+                state.selectedCompetitionFilter = competition
+                state.competitionFilters.forEach { $0.isSelected = false }
+                state.competitionFilters.first { $0.id == competition.rawValue }?.isSelected = true
                 return .none
-            case let .sportFilterTagSelected(id):
-                state.selectedSportFilter = id
+            case let .sportFilterTagSelected(sport):
+                guard let sport else { return .none }
+                state.selectedSportFilter = sport
                 state.sportFilters.forEach { $0.isSelected = false }
-                state.sportFilters.first { $0.id == id }?.isSelected = true
+                state.sportFilters.first { $0.id == sport.rawValue }?.isSelected = true
                 return .none
             case let .listRowTapped(viewModelData):
                 guard let detail = state.searchedModels.first(where: { $0.id == viewModelData.id }) else { return .none }

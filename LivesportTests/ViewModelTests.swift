@@ -12,7 +12,7 @@ import ComposableArchitecture
 
 class ViewModelTests: XCTestCase {
     
-    func test_SearchResultViewModel() {
+    func test_searchResultViewModel() {
         let imageResult = ResultImage(path: "6BtM40Br-xGFNNID8.png", usageId: 2, variantTypeId: 15)
         let searchResult = SearchResult(
             id: "dummyId",
@@ -36,7 +36,7 @@ class ViewModelTests: XCTestCase {
         XCTAssertEqual(searchResultViewModel.imageData, imageData)
     }
 
-    func test_DetailViewModel() {
+    func test_detailViewModel() {
         let imageResult = ResultImage(path: "6BtM40Br-xGFNNID8.png", usageId: 2, variantTypeId: 15)
         let searchResult = SearchResult(
             id: "dymmyId",
