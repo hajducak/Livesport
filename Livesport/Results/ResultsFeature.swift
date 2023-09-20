@@ -107,10 +107,10 @@ struct ResultsFeature: Reducer {
                 state.isLoading = false
                 state.destination = .alert(
                     AlertState {
-                        TextState("Vyskytla sa chyba: \(error.localizedDescription)")
+                        TextState("An error occurred: \(error.localizedDescription)")
                     } actions: {
                         ButtonState(role: .destructive, action: .retrySearch) {
-                            TextState("Znova")
+                            TextState("Retry")
                         }
                     }
                 )

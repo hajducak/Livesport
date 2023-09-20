@@ -28,7 +28,7 @@ struct ResultsView: View {
                     }
                     Spacer()
                 }
-                    .navigationTitle("Výsledky")
+                    .navigationTitle("Sport results")
             }
         }
             .alert(
@@ -58,7 +58,7 @@ struct ResultsView: View {
                             .padding(.leading, 8)
                             .foregroundColor(Color(.systemGray))
                         TextField(
-                            "Vyhľadaj výsledky",
+                            "Enter search term",
                             text: viewStore.binding(get: { $0.search }, send: ResultsFeature.Action.textChange)
                         )
                     }
@@ -76,7 +76,7 @@ struct ResultsView: View {
                         .background(Color(UIColor.systemBlue).cornerRadius(8, corners: [.bottomRight, .topRight]))
                 }
                 if let isValid = viewStore.isSearchValid, !isValid {
-                    Text("Dĺžka vyhľadávania musí mať aspoň 2 znaky.")
+                    Text("Search length must be at least 2 characters.")
                         .font(Font.caption).bold()
                         .foregroundColor(.white)
                         .padding(.bottom, 6)
