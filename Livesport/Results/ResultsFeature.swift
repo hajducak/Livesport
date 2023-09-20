@@ -12,31 +12,16 @@
 import ComposableArchitecture
 import Foundation
 
-struct SearchResultViewModel: Equatable, Identifiable, Hashable {
-    let id: String
-    let name: String
-    let sport: String
-    let imageData: Data?
-
-    init(result: SearchResult, imageData: Data?) {
-        self.id = result.id
-        self.name = result.name
-        self.sport = result.sport.name
-        self.imageData = imageData
-    }
-
-    init(id: String, name: String, sport: String, imageData: Data?) {
-        self.id = id
-        self.name = name
-        self.sport = sport
-        self.imageData = imageData
-    }
-}
-
 struct ResultsFeature: Reducer {
     struct State: Equatable {
+        @PresentationState var destination: Destination.State?
+
         @BindingState var search = ""
         @BindingState var emptyState: EmptyState = .empty
+
+        var isLoading: Bool = false
+        var isSearchValid: Bool?
+
         var selectedSportFilter: String = "1,2,3,4,5,6,7,8,9"
         var sportFilters: [FilterModel] = [
             FilterModel(id: "1,2,3,4,5,6,7,8,9", imageName: "tray.full.fill", title: "All", isSelected: true),
@@ -56,12 +41,9 @@ struct ResultsFeature: Reducer {
             FilterModel(id: "1", imageName: "person.3.fill", title: "Competitions"),
             FilterModel(id: "2,3,4", imageName: "person.fill", title: "Participants")
         ]
+
         var searchedData: [SearchResultViewModel] = []
-        var searchModels: [SearchResult] = []
-        var isLoading: Bool = false
-        var isSearchValid: Bool?
-        @PresentationState var destination: Destination.State?
-        var path = StackState<DetailFeature.State>()
+        var searchedModels: [SearchResult] = []
     }
 
     enum Action: Equatable {
@@ -92,7 +74,7 @@ struct ResultsFeature: Reducer {
                 }
                 state.isSearchValid = true
                 state.searchedData = []
-                state.searchModels = []
+                state.searchedModels = []
                 state.isLoading = true
                 return .run { [search = state.search, typeIds = state.selectedTypeFilter, sportIds = state.selectedSportFilter] send in
                     await send(.searchResponse(
@@ -115,12 +97,12 @@ struct ResultsFeature: Reducer {
                 // MARK: - 2. The response is continues, effect by effect from searchResponse merge, so I need append element by element how they come with downloaded image.
                 // MARK: I would love to make it that data will come in one peace together but i don't now how?
                 state.searchedData.append(contentsOf: resultWithImageData.compactMap({ SearchResultViewModel(result: $0.key, imageData: $0.value) }))
-                state.searchModels.append(contentsOf: resultWithImageData.compactMap({ $0.key }))
+                state.searchedModels.append(contentsOf: resultWithImageData.compactMap({ $0.key }))
                 state.isLoading = false
                 return .none
             case let .searchResponse(.failure(error)):
                 state.searchedData = []
-                state.searchModels = []
+                state.searchedModels = []
                 state.emptyState = .errorSearch(error.localizedDescription)
                 state.isLoading = false
                 state.destination = .alert(
@@ -147,7 +129,7 @@ struct ResultsFeature: Reducer {
                 state.sportFilters.first { $0.id == id }?.isSelected = true
                 return .none
             case let .listRowTapped(viewModelData):
-                guard let detail = state.searchModels.first(where: { $0.id == viewModelData.id }) else { return .none }
+                guard let detail = state.searchedModels.first(where: { $0.id == viewModelData.id }) else { return .none }
                 let viewModel = DetailViewModel(result: detail, imageData: viewModelData.imageData)
                 state.destination = .detail(DetailFeature.State(detail: viewModel))
                 return .none

@@ -39,7 +39,7 @@ final class ResultsTests: XCTestCase {
         await store.receive(.imageResponseByResult([SearchResult.dummy: UIImage(systemName: "photo.on.rectangle")?.pngData()])) {
             $0.isLoading = false
             $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData()) })
-            $0.searchModels = [SearchResult.dummy]
+            $0.searchedModels = [SearchResult.dummy]
         }
     }
 
@@ -143,7 +143,7 @@ final class ResultsTests: XCTestCase {
     }
 
     func test_imageDonloader() async {
-        let store = TestStore(initialState: ResultsFeature.State(searchModels: [SearchResult.dummy])) {
+        let store = TestStore(initialState: ResultsFeature.State(searchedModels: [SearchResult.dummy])) {
             ResultsFeature()
         } withDependencies: {
             $0.imageDownloader.fetch = { path in
