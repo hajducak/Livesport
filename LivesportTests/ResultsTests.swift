@@ -20,6 +20,9 @@ final class ResultsTests: XCTestCase {
             $0.searchData.fetch = { search, sportIds, typeIds in
                 [.dummy]
             }
+            $0.imageDownloader.fetch = { path in
+                return UIImage(systemName: "photo.on.rectangle")?.pngData()
+            }
         }
 
         await store.send(.textChange("djokovic")) {
@@ -31,9 +34,11 @@ final class ResultsTests: XCTestCase {
             $0.isSearchValid = true
         }
         
-        await store.receive(.searchResponse(.success([SearchResult.dummy]))) {
+        await store.receive(.searchResponse(.success([SearchResult.dummy])))
+
+        await store.receive(.imageResponseByResult([SearchResult.dummy: UIImage(systemName: "photo.on.rectangle")?.pngData()])) {
             $0.isLoading = false
-            $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0) })
+            $0.searchedData = [SearchResult.dummy].compactMap({ SearchResultViewModel(result: $0, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData()) })
             $0.searchModels = [SearchResult.dummy]
         }
     }
@@ -146,12 +151,7 @@ final class ResultsTests: XCTestCase {
             }
         }
 
-        await store.send(.listRowTapped("AZg49Et9")) {
-            $0.selectedDetail = .dummy
-            $0.isLoading = true
-        }
-
-        await store.receive(.imageResponse(UIImage(systemName: "photo.on.rectangle")?.pngData())) {
+        await store.send(.listRowTapped(SearchResultViewModel(id: "AZg49Et9", name: "", sport: "", imageData: UIImage(systemName: "photo.on.rectangle")?.pngData()))) {
             $0.isLoading = false
             let viewModel = DetailViewModel(result: .dummy, imageData: UIImage(systemName: "photo.on.rectangle")?.pngData())
             $0.destination = .detail(DetailFeature.State(detail: viewModel))

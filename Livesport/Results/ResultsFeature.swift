@@ -6,7 +6,7 @@
 //
 // NOTES:
 // 1. How to use BindableAction and BindingReducer? - case binding(BindingAction<String>)
-// 2. How to use two asynch task inside effects (.run)
+// 3. How to use path, NavigationStackPath to show navigation destination (Action: case path(StackAction<DetailFeature.State, DetailFeature.Action>), Reducer: .forEach(\.path, action: /Action.path) { DetailFeature() })
 //
 
 import ComposableArchitecture
@@ -16,18 +16,20 @@ struct SearchResultViewModel: Equatable, Identifiable, Hashable {
     let id: String
     let name: String
     let sport: String
-    // TODO: add image
+    let imageData: Data?
 
-    init(result: SearchResult) {
+    init(result: SearchResult, imageData: Data?) {
         self.id = result.id
         self.name = result.name
         self.sport = result.sport.name
+        self.imageData = imageData
     }
 
-    init(id: String, name: String, sport: String) {
+    init(id: String, name: String, sport: String, imageData: Data?) {
         self.id = id
         self.name = name
         self.sport = sport
+        self.imageData = imageData
     }
 }
 
@@ -56,7 +58,6 @@ struct ResultsFeature: Reducer {
         ]
         var searchedData: [SearchResultViewModel] = []
         var searchModels: [SearchResult] = []
-        var selectedDetail: SearchResult?
         var isLoading: Bool = false
         var isSearchValid: Bool?
         @PresentationState var destination: Destination.State?
@@ -65,14 +66,13 @@ struct ResultsFeature: Reducer {
 
     enum Action: Equatable {
         case searchResponse(TaskResult<[SearchResult]>)
-        case imageResponse(Data?)
+        case imageResponseByResult([SearchResult: Data?])
         case typeFilterTagSelected(String)
         case sportFilterTagSelected(String)
         case searchButtonTapped
         case textChange(String)
         case destination(PresentationAction<Destination.Action>)
-//        case path(StackAction<DetailFeature.State, DetailFeature.Action>)
-        case listRowTapped(String)
+        case listRowTapped(SearchResultViewModel)
 
         enum Alert: Equatable {
             case retrySearch
@@ -102,9 +102,20 @@ struct ResultsFeature: Reducer {
             case let .searchResponse(.success(results)):
                 if results.isEmpty {
                     state.emptyState = .emptySearch
+                    state.isLoading = false
                 }
-                state.searchedData = results.compactMap({ SearchResultViewModel(result: $0) })
-                state.searchModels = results
+                // MARK: - 1. Not the best practice I gues but it is working (can't find how I can download image for every single result diferently and smoothly)
+                let effects = results.compactMap({ result -> Effect<ResultsFeature.Action> in
+                    return Effect.run(operation: { send in
+                        try await send(.imageResponseByResult([result: self.imageDownloader.fetch(result.images.first(where: { $0.variantTypeId == 15 })?.path ?? "")]))
+                    })
+                })
+                return .merge(effects)
+            case let .imageResponseByResult(resultWithImageData):
+                // MARK: - 2. The response is continues, effect by effect from searchResponse merge, so I need append element by element how they come with downloaded image.
+                // MARK: I would love to make it that data will come in one peace together but i don't now how?
+                state.searchedData.append(contentsOf: resultWithImageData.compactMap({ SearchResultViewModel(result: $0.key, imageData: $0.value) }))
+                state.searchModels.append(contentsOf: resultWithImageData.compactMap({ $0.key }))
                 state.isLoading = false
                 return .none
             case let .searchResponse(.failure(error)):
@@ -135,35 +146,20 @@ struct ResultsFeature: Reducer {
                 state.sportFilters.forEach { $0.isSelected = false }
                 state.sportFilters.first { $0.id == id }?.isSelected = true
                 return .none
-            case let .listRowTapped(id):
-                guard let detail = state.searchModels.first(where: { $0.id == id }) else { return .none }
-                state.selectedDetail = detail
-                let imagePath = detail.images.first { $0.variantTypeId == 15 }?.path ?? ""
-                state.isLoading = true
-                return .run { send in
-                    try await send(.imageResponse(self.imageDownloader.fetch(imagePath)))
-                }
-            case let .imageResponse(data):
-                state.isLoading = false
-                guard let detail = state.selectedDetail else { return .none }
-                let viewModel = DetailViewModel(result: detail, imageData: data)
+            case let .listRowTapped(viewModelData):
+                guard let detail = state.searchModels.first(where: { $0.id == viewModelData.id }) else { return .none }
+                let viewModel = DetailViewModel(result: detail, imageData: viewModelData.imageData)
                 state.destination = .detail(DetailFeature.State(detail: viewModel))
                 return .none
             case .destination:
                 return .none
-//            case .path:
-//                return .none
             }
         }
             .ifLet(\.$destination, action: /Action.destination) {
                 Destination()
             }
-//            .forEach(\.path, action: /Action.path) {
-//                DetailFeature()
-//            }
     }
 }
-
 
 extension ResultsFeature {
     struct Destination: Reducer {

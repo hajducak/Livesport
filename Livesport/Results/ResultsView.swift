@@ -21,8 +21,8 @@ struct ResultsView: View {
                         if viewStore.isLoading {
                             LoadingView()
                         } else {
-                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState, selection: { id in
-                                viewStore.send(.listRowTapped(id))
+                            SportGroupedList(items: viewStore.searchedData, emptyState: viewStore.emptyState, selection: { item in
+                                viewStore.send(.listRowTapped(item))
                             })
                         }
                     }
