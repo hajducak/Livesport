@@ -1,42 +1,50 @@
-# Referenční cvičení pro test znalostí a rozvoj kandidáta
-Cílem je implementovat jednoduchou aplikaci na vyhledávání entit - soutěže, týmy, hráči, pomocí Livesport Search Service API
+# Reference Exercise for Knowledge Testing and Candidate Development  
 
-## Funkční požadavky
-- Aplikace bude mít 2 obrazovky - výpis výsledků a detail.
-- Výpis bude obsahovat titulek (např. Výsledky), vyhledávací pole, tlačítko pro
-vyhledání a list výsledků.
-- Vyhledávání musí mít možnost filtrace dle typu entity (viz parametry API):
-    - všechny typy - id 1,2,3,4
-    - pouze soutěže - id 1
-    - pouze participanti - id 2,3,4
-- Aplikace bude vhodně zobrazovat stav stahování dat - loading.
-- V případě jakékoliv chyby - nedostupný internet, serverová chyba (viz. API níže), ... se
-zobrazí alert s příslušnou zprávou a “retry” tlačítkem.
-- Každý řádek musí zobrazovat minimálně:
-    - název entity - např. Arsenal FC, Roger Federer, apod.
-    - logo/fotku, případně placeholder jestli chybí
-- Seznam výsledků bude seskupen dle sportu do sekcí, každá sekce bude mít hlavičku
-s názvem sportu.
-- Každý řádek bude navigovat na detail.
-- Detail bude obsahovat titulek s názvem entity, větší fotku/logo/placeholder, zemi
-soutěže/týmu/hráče, dle uvážení další dostupné informace.
+The goal is to implement a simple application for searching entities—competitions, teams, and players—using the **Livesport Search Service API**.  
 
-## Technické požadavky
-- SwiftUI pro uživatelské rozhraní - barevnost a styl dle libosti.
-- Architektura The Composable Architecture: https://github.com/pointfreeco/swift-composable-architecture.
-- Pro práci s daty využít Combine popřípadě async/await.
-- Podpora iOS 15+.
-- Vyvíjeno v posledním stable Xcode.
-- Minimální pokrytí testy (unit):
-    - networking 
-    - TCA
-    - services
-- Využít git a práci průběžně a logicky commitovat.
-- Git repo prosím NESDÍLET veřejně!
-- Po vypracování repo nasdílet na jedno z následujícího:
-    - GitLab: jiri.pospisil@livesport.eu, martin.strambach@livesport.eu, michal.klement@livesport.eu, tomas.krasnay@livesport.eu
-- Použití knihoven třetích stran možné, ale zvážit nutnost. Použít výhradně SPM
+---
 
-## Livesport Search Service API
-### Endpoint
-- https://s.livesport.services/api/v2/search
+## **Functional Requirements**  
+- The application will have **two screens**: a results list and a detail view.  
+- The **results list** should include:  
+  - A title (e.g., *Results*)  
+  - A search field  
+  - A search button  
+  - A list of results  
+- The search must support **filtering by entity type** (based on API parameters):  
+  - **All types** – IDs: `1,2,3,4`  
+  - **Competitions only** – ID: `1`  
+  - **Participants only** – IDs: `2,3,4`  
+- The app should properly indicate **data loading status** (e.g., loading spinner).  
+- In case of any errors (e.g., no internet, server failure), an **alert** should appear with an appropriate message and a **retry** button.  
+- Each result item must display at least:  
+  - **Entity name** (e.g., *Arsenal FC, Roger Federer*).  
+  - **Logo/photo** (or a placeholder if missing).  
+- The results list should be **grouped by sport** into sections, each with a **sport title header**.  
+- Selecting a result should navigate to the **detail view**.  
+- The **detail view** should display:  
+  - The entity's **title**  
+  - A **larger photo/logo/placeholder**  
+  - The **country** of the competition/team/player  
+  - Any other relevant available information  
+
+---
+
+## **Technical Requirements**  
+- **SwiftUI** for the user interface (color scheme and styling are up to you).  
+- **The Composable Architecture (TCA)**: [GitHub Repository](https://github.com/pointfreeco/swift-composable-architecture).  
+- Use **Combine** or **async/await** for data handling.  
+- Support for **iOS 15+**.  
+- Developed using the latest **stable Xcode**.  
+- **Minimum test coverage** (unit tests required for):  
+  - **Networking**  
+  - **TCA**  
+  - **Services**  
+- Use **Git** and commit work **progressively and logically**.    
+- Third-party libraries are allowed but should be used **only if necessary**. Use **SPM (Swift Package Manager)** exclusively.  
+
+---
+
+## **Livesport Search Service API**  
+### **Endpoint**  
+🔗 [https://s.livesport.services/api/v2/search](https://s.livesport.services/api/v2/search)  
